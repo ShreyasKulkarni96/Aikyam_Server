@@ -1,0 +1,5077 @@
+{
+	"info": {
+		"_postman_id": "ef41d98e-d2f5-480c-b534-cef0fcdfe1a8",
+		"name": "AIKYAM_SMS_APIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11571381"
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const statusCode = pm.response.code;\r",
+									"\r",
+									"if(statusCode === 200){\r",
+									"    pm.test(\"Success: 200 OK\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"    const response = pm.response.json();\r",
+									"    pm.environment.set(\"token\", response.data.token);\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailOrPhone\": \"anurag.dev443@gmail.com\",\r\n    \"password\": \"Anurag@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success: with email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailOrPhone\": \"anurag.dev443@gmail.com\",\r\n    \"password\": \"Anurag@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "360"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"168-858NSt8tEdokAkWRg+pSiedj3CI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Apr 2023 16:23:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Logged in successfully\",\n    \"data\": {\n        \"userId\": 1,\n        \"name\": \"Anurag Kumar\",\n        \"email\": \"anurag.dev443@gmail.com\",\n        \"role\": \"ADMIN\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBbnVyYWcgS3VtYXIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODE2NjIxOTMsImV4cCI6MTY4MTc0ODU5M30.FtaZ-2Vafq8BDieDdX3wRuMbQblBu49Ov2dH6w6hQq0\"\n    }\n}"
+						},
+						{
+							"name": "success: with mobile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailOrPhone\": \"+91-7988097590\",\r\n    \"password\": \"Anurag@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "360"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"168-adEFIuE3KcCAJtJUQLisOtu0THU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Apr 2023 16:26:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Logged in successfully\",\n    \"data\": {\n        \"userId\": 1,\n        \"name\": \"Anurag Kumar\",\n        \"email\": \"anurag.dev443@gmail.com\",\n        \"role\": \"ADMIN\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBbnVyYWcgS3VtYXIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODE2NjIzOTYsImV4cCI6MTY4MTc0ODc5Nn0.B3ZiKwXWlZ_K4lgP9wtfeWeHA8vlFsGBinE7FwDW5zs\"\n    }\n}"
+						},
+						{
+							"name": "failed: wrong password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailOrPhone\": \"anurag.dev443@gmail.com\",\r\n    \"password\": \"Anurag@1233\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"62-Jiy3zG8aGJEP1BJRJ6gtKH9DbYo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Apr 2023 16:27:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 401,\n    \"message\": \"Either username or password is invalid\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Anurag Kumar\",\r\n    \"DOB\": \"05-03-1996\",\r\n    \"gender\": \"M\",\r\n    \"email\": \"anurag.dev443@gmail.com\",\r\n    \"phone1\": \"+91-7988097590\",\r\n    \"password\": \"Anurag@123\",\r\n    \"localAddress\": \"Near Jehan Circle,\\n Nashik, Maharashtra-4220053\",\r\n    \"permanentAddress\": \"SAME\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/register?roleId=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"register"
+							],
+							"query": [
+								{
+									"key": "roleId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Anurag Kumar\",\r\n    \"DOB\": \"05-03-1996\",\r\n    \"gender\": \"M\",\r\n    \"email\": \"anurag.dev443@gmail.com\",\r\n    \"phone1\": \"+91-7988097590\",\r\n    \"password\": \"Anurag@123\",\r\n    \"localAddress\": \"Near Jehan Circle,\\n Nashik, Maharashtra-4220053\",\r\n    \"permanentAddress\": \"SAME\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/register",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "465"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d1-LOEBnM7Df4Qqn3I4ZI3on4a1Mqs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Apr 2023 13:38:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Registered successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Anurag Kumar\",\n        \"DOB\": \"05-03-1996\",\n        \"gender\": \"M\",\n        \"email\": \"anurag.dev443@gmail.com\",\n        \"phone1\": \"+91-7988097590\",\n        \"phone2\": null,\n        \"localAddress\": \"Near Jehan Circle,\\n Nashik, Maharashtra-4220053\",\n        \"permanentAddress\": \"Near Jehan Circle,\\n Nashik, Maharashtra-4220053\",\n        \"U_S_ID\": null,\n        \"isActive\": \"A\",\n        \"roleId\": 1,\n        \"updatedAt\": \"2023-04-16T13:38:54.218Z\",\n        \"createdAt\": \"2023-04-16T13:38:54.218Z\"\n    }\n}"
+						},
+						{
+							"name": "falied: User already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Anurag Kumar\",\r\n    \"DOB\": \"05-03-1996\",\r\n    \"gender\": \"M\",\r\n    \"email\": \"anurag.dev443@gmail.com\",\r\n    \"phone1\": \"+91-7988097590\",\r\n    \"password\": \"Anurag@123\",\r\n    \"localAddress\": \"Near Jehan Circle,\\n Nashik, Maharashtra-4220053\",\r\n    \"permanentAddress\": \"SAME\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/register",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "97"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"61-MBDiYrVym3Q3Udl+6RNLIwzaXQM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Apr 2023 13:39:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 400,\n    \"message\": \"User already registered, please login\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "User Profile",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user/profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/user/profile",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "349"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15d-Z5/MebWtYvT0uAB5ya/fNCKJhHw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Apr 2023 16:33:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"userId\": 1,\n        \"name\": \"Anurag Kumar\",\n        \"dob\": \"05-03-1996\",\n        \"gender\": \"M\",\n        \"email\": \"anurag.dev443@gmail.com\",\n        \"mobile\": \"+91-7988097590\",\n        \"localAddress\": \"Near Jehan Circle,\\n Nashik, Maharashtra-4220053\",\n        \"permanentAddress\": \"Near Jehan Circle,\\n Nashik, Maharashtra-4220053\",\n        \"role\": \"ADMIN\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Campus Management",
+			"item": [
+				{
+					"name": "Add Campus",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"facilityName\": \"Vidaya Mandir, Mumbai\",\r\n    \"city\": \"Mumbai\",\r\n    \"state\": \"Maharashtra\",\r\n    \"facilityAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\r\n    \"contactPerson\": \"Mr Ram Ratan Ugale\",\r\n    \"contactPersonAddress\":  \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\r\n    \"contactPersonPhone\": \"+91-9008812345\",\r\n    \"contactPersonEmail\": \"ram.ratan@vidyamandir.org\",\r\n    \"spaceDetails\": {\r\n        \"noOfClassRooms\": 6,\r\n        \"noOfLabs\": 6,\r\n        \"noOfStudios\": 4\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/campus",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"campus"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"facilityName\": \"Vidaya Mandir, Mumbai\",\r\n    \"city\": \"Mumbai\",\r\n    \"state\": \"Maharashtra\",\r\n    \"facilityAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\r\n    \"contactPerson\": \"Mr Ram Ratan Ugale\",\r\n    \"contactPersonAddress\":  \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\r\n    \"contactPersonPhone\": \"+91-9008812345\",\r\n    \"contactPersonEmail\": \"ram.ratan@vidyamandir.org\",\r\n    \"spaceDetails\": {\r\n        \"noOfClassRooms\": 6,\r\n        \"noOfLabs\": 6,\r\n        \"noOfStudios\": 4\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/campus",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"campus"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "639"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27f-IwTxwE9y9BUeehnnoJd7FYQrpc8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Apr 2023 14:26:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Campus created successfully\",\n    \"data\": {\n        \"isActive\": \"A\",\n        \"id\": 1,\n        \"facilityName\": \"Vidaya Mandir, Mumbai\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"facilityAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\n        \"contactPerson\": \"Mr Ram Ratan Ugale\",\n        \"contactPersonAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\n        \"contactPersonPhone\": \"+91-9008812345\",\n        \"contactPersonEmail\": \"ram.ratan@vidyamandir.org\",\n        \"spaceDetails\": {\n            \"noOfClassRooms\": 6,\n            \"noOfLabs\": 6,\n            \"noOfStudios\": 4\n        },\n        \"updatedAt\": \"2023-04-17T14:26:07.536Z\",\n        \"createdAt\": \"2023-04-17T14:26:07.536Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch all campuses",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/campus",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"campus"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/campus",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"campus"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1208"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b8-0Tmj25TWfdseQCKDXRWB5W5iuxc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Apr 2023 14:41:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"facilityName\": \"Vidaya Mandir, Mumbai\",\n            \"city\": \"Mumbai\",\n            \"state\": \"Maharashtra\",\n            \"facilityAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\n            \"contactPerson\": \"Mr Ram Ratan Ugale\",\n            \"contactPersonAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\n            \"contactPersonPhone\": \"+91-9008812345\",\n            \"contactPersonEmail\": \"ram.ratan@vidyamandir.org\",\n            \"spaceDetails\": {\n                \"noOfLabs\": 6,\n                \"noOfStudios\": 4,\n                \"noOfClassRooms\": 6\n            },\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-17T14:26:07.000Z\",\n            \"updatedAt\": \"2023-04-17T14:26:07.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"facilityName\": \"Digital Music College, Nagpur\",\n            \"city\": \"Nagpur\",\n            \"state\": \"Maharashtra\",\n            \"facilityAddress\": \"New Subhash Nagar, Near Indian Oil Petrol Pump, Nagpur, Maharashtra - 433069\",\n            \"contactPerson\": \"Krisnha Prakash Sharma\",\n            \"contactPersonAddress\": \"New Subhash Nagar, Near Indian Oil Petrol Pump, Nagpur, Maharashtra - 433069\",\n            \"contactPersonPhone\": \"+91-9008812345\",\n            \"contactPersonEmail\": \"krishna.p@dmc.org\",\n            \"spaceDetails\": {\n                \"noOfLabs\": 16,\n                \"noOfStudios\": 14,\n                \"noOfClassRooms\": 16\n            },\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-17T14:29:30.000Z\",\n            \"updatedAt\": \"2023-04-17T14:29:30.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Campus",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/campus/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"campus",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/campus/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"campus",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "632"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"278-3z9aXtEIiZ8XDv/sM3FQsTXTpvY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Apr 2023 14:44:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"facilityName\": \"Vidaya Mandir, Mumbai\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"facilityAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\n        \"contactPerson\": \"Mr Ram Ratan Ugale\",\n        \"contactPersonAddress\": \"403, Survey No. 3, Lane no. 2, Andheri East, Mumbai, Maharashtra - 400069\",\n        \"contactPersonPhone\": \"+91-9008812345\",\n        \"contactPersonEmail\": \"ram.ratan@vidyamandir.org\",\n        \"spaceDetails\": {\n            \"noOfLabs\": 6,\n            \"noOfStudios\": 4,\n            \"noOfClassRooms\": 6\n        },\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-04-17T14:26:07.000Z\",\n        \"updatedAt\": \"2023-04-17T14:26:07.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Campus",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/campus/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"campus",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete campus",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/campus/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"campus",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Program Management",
+			"item": [
+				{
+					"name": "Add Program",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"programName\": \"Diploma in Sound Engineering\",\r\n    \"type\": \"core\",\r\n    \"details\": \"Full time in campus 2 years Diploma program\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/program",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"program"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"programName\": \"Diploma in Disc Jockeying\",\r\n    \"type\": \"core\",\r\n    \"details\": \"Full time in campus 2 years Diploma program\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/program",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"program"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "327"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"147-9N66y1VxI6pIve17rpnMtWr/eA0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:07:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Program created successfully\",\n    \"data\": {\n        \"isActive\": \"A\",\n        \"id\": 7,\n        \"programName\": \"Diploma in Disc Jockeying\",\n        \"type\": \"core\",\n        \"details\": \"Full time in campus 2 years Diploma program\",\n        \"programCode\": \"ABC-1681794451471\",\n        \"updatedAt\": \"2023-04-18T05:07:31.471Z\",\n        \"createdAt\": \"2023-04-18T05:07:31.471Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch All Programs",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/program?limit=3&skip=1&fields=programName,id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"program"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "skip",
+									"value": "1"
+								},
+								{
+									"key": "fields",
+									"value": "programName,id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/program",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"program"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1801"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"709-ByaYAbbPlFLuC+QnWGfWeV5hAkg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:08:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"programName\": \"Diploma in Sound Engineering\",\n            \"programCode\": \"ABC-1681794093934\",\n            \"type\": \"core\",\n            \"details\": \"Full time in campus 4 years degree program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:01:33.000Z\",\n            \"updatedAt\": \"2023-04-18T05:01:33.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"programName\": \"Bachelor in Sound Engineering\",\n            \"programCode\": \"ABC-1681794122025\",\n            \"type\": \"core\",\n            \"details\": \"Full time in campus 4 years degree program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:02:02.000Z\",\n            \"updatedAt\": \"2023-04-18T05:02:02.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"programName\": \"Masters in Sound Engineering\",\n            \"programCode\": \"ABC-1681794133354\",\n            \"type\": \"core\",\n            \"details\": \"Full time in campus 2 years degree program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:02:13.000Z\",\n            \"updatedAt\": \"2023-04-18T05:02:13.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"programName\": \"Piano Pioneer\",\n            \"programCode\": \"ABC-1681794164589\",\n            \"type\": \"elective\",\n            \"details\": \"Elective certificate program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:02:44.000Z\",\n            \"updatedAt\": \"2023-04-18T05:02:44.000Z\"\n        },\n        {\n            \"id\": 5,\n            \"programName\": \"Certificate Program Tabla Mastery\",\n            \"programCode\": \"ABC-1681794199962\",\n            \"type\": \"elective\",\n            \"details\": \"Elective 1 year certificate program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:03:19.000Z\",\n            \"updatedAt\": \"2023-04-18T05:03:19.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"programName\": \"Certificate Program Tabla Mastery\",\n            \"programCode\": \"ABC-1681794287240\",\n            \"type\": \"elective\",\n            \"details\": \"Elective 1 year certificate program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:04:47.000Z\",\n            \"updatedAt\": \"2023-04-18T05:04:47.000Z\"\n        },\n        {\n            \"id\": 7,\n            \"programName\": \"Diploma in Disc Jockeying\",\n            \"programCode\": \"ABC-1681794451471\",\n            \"type\": \"core\",\n            \"details\": \"Full time in campus 2 years Diploma program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:07:31.000Z\",\n            \"updatedAt\": \"2023-04-18T05:07:31.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "success: with filter and limit",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/program?limit=3&skip=1&fields=programName,id",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"program"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "3"
+										},
+										{
+											"key": "skip",
+											"value": "1"
+										},
+										{
+											"key": "fields",
+											"value": "programName,id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "231"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e7-RZxzwSCCfjCSCbe0jNxGu1YrsYM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 27 Aug 2023 13:07:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"programName\": \"Certificate Program Tabla Mastery\",\n            \"id\": 5\n        },\n        {\n            \"programName\": \"Certificate Program Tabla Mastery\",\n            \"id\": 6\n        },\n        {\n            \"programName\": \"Degree Program\",\n            \"id\": 8\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Program",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/program/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"program",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/program/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"program",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "321"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141-IQ5l3EG6ZD9XaopgbN/6jufIypw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:09:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"programName\": \"Diploma in Sound Engineering\",\n        \"programCode\": \"ABC-1681794093934\",\n        \"type\": \"core\",\n        \"details\": \"Full time in campus 4 years degree program\",\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-04-18T05:01:33.000Z\",\n        \"updatedAt\": \"2023-04-18T05:01:33.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update program",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/program/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"program",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Progam",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/program/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"program",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batch Management",
+			"item": [
+				{
+					"name": "Add Batch",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academicYearId\": 1,\r\n    \"programId\": 1,\r\n    \"type\": \"core\",\r\n    \"batchCode\": \"DSE/B/0108/MUM/23-24\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/batch",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"batch"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"academicYearId\": 1,\r\n    \"programId\": 1,\r\n    \"type\": \"core\",\r\n    \"batchCode\": \"DSE/B/0108/MUM/23-24\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/batch",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"batch"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "287"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11f-5bO+BP6WYD2b8wsaik0toDP3YE0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 15:23:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Batch created successfully\",\n    \"data\": {\n        \"isActive\": \"A\",\n        \"id\": 1,\n        \"academicYearId\": 1,\n        \"programId\": 1,\n        \"type\": \"core\",\n        \"batchCode\": \"BAT-1693408997339\",\n        \"academicYear\": \"AY2023-2024\",\n        \"updatedAt\": \"2023-08-30T15:23:17.342Z\",\n        \"createdAt\": \"2023-08-30T15:23:17.342Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch All Batches",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/batch?limit=10&skip=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"batch"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/batch?limit=10&skip=0",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"batch"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "skip",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "312"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"138-4J1NrJenMVAFtRYdimBynHFxi5k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 15:23:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"count\": 1,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"academicYear\": \"AY2023-2024\",\n            \"type\": \"core\",\n            \"batchCode\": \"BAT-1693408997339\",\n            \"description\": null,\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-08-30T15:23:17.000Z\",\n            \"updatedAt\": \"2023-08-30T15:23:17.000Z\",\n            \"programId\": 1,\n            \"academicYearId\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Batch",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/batch/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"batch",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/batch/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"batch",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "300"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12c-nCV81asGF3Q55XLC5hN8asYow1k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 15:26:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"academicYear\": \"AY2023-2024\",\n        \"type\": \"core\",\n        \"batchCode\": \"BAT-1693408997339\",\n        \"description\": null,\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-08-30T15:23:17.000Z\",\n        \"updatedAt\": \"2023-08-30T15:23:17.000Z\",\n        \"programId\": 1,\n        \"academicYearId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Batch",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/batch/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"batch",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Batch",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/batch/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"batch",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Academic Year Management",
+			"item": [
+				{
+					"name": "Add New Academic Year",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/academic-year",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"academic-year"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/academic-year",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"academic-year"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cf-bhtNOrwEpRnMF1Dxo5kYhGpwbzQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 15:10:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"AcademicYear created successfully\",\n    \"data\": {\n        \"isActive\": \"A\",\n        \"id\": 1,\n        \"name\": \"AY2023-2024\",\n        \"updatedAt\": \"2023-08-29T15:10:27.043Z\",\n        \"createdAt\": \"2023-08-29T15:10:27.043Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch All Academic Years",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/academic-year?skip=0&limit=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"academic-year"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/academic-year?skip=0&limit=10",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"academic-year"
+									],
+									"query": [
+										{
+											"key": "skip",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "225"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e1-RlMwEkiGTHFmwU7BcZHDfPXGb20\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 15:11:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"count\": 1,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"AY2023-2024\",\n            \"description\": null,\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-08-29T15:10:27.000Z\",\n            \"updatedAt\": \"2023-08-29T15:10:27.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Academic Year",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/academic-year/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"academic-year",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/academic-year/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"academic-year",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "213"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d5-mT69JKpZk8lxXB8m8PFOHJqe/hU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 15:11:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"AY2023-2024\",\n        \"description\": null,\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-08-29T15:10:27.000Z\",\n        \"updatedAt\": \"2023-08-29T15:10:27.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Academic Year",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"This is the starting year\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/academic-year/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"academic-year",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"This is the upcoming year\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/academic-year/2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"academic-year",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "196"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c4-9uTFdN/LJR14uOyuavcPegx2ELo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 15:32:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Academic Year Updated successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"AY2024-2025\",\n        \"description\": \"This is the upcoming year\",\n        \"updatedAt\": \"2023-08-29T15:32:03.969Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Academic Year",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/academic-year/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"academic-year",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/academic-year/3",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"academic-year",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-Fgtuk4DOsJ1XriqNgwLswgd0agM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 15:33:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Academic Year deleted\",\n    \"data\": {}\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Course Management",
+			"item": [
+				{
+					"name": "Add Course",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseName\": \"Basics of Music\",\r\n    \"type\": \"core\",\r\n    \"description\": \"Consists of abc of Music and Musical Theories\",\r\n    \"programId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/course",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"course"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"courseName\": \"Basics of Music\",\r\n    \"type\": \"core\",\r\n    \"description\": \"Consists of abc of Music and Musical Theories\",\r\n    \"programId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/course",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"course"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "320"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"140-14DA7dWrV9ibfDqKOGkXhvdEyak\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:19:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Course created successfully\",\n    \"data\": {\n        \"isActive\": \"A\",\n        \"id\": 1,\n        \"courseName\": \"Basics of Music\",\n        \"type\": \"core\",\n        \"description\": \"Consists of abc of Music and Musical Theories\",\n        \"courseCode\": \"CBA-1681795178640\",\n        \"updatedAt\": \"2023-04-18T05:19:38.641Z\",\n        \"createdAt\": \"2023-04-18T05:19:38.641Z\"\n    }\n}"
+						},
+						{
+							"name": "failed: programId does not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"courseName\": \"Basics of Instruments\",\r\n    \"type\": \"core\",\r\n    \"description\": \"Consists of theories of Musical Instruments\",\r\n    \"programId\": 17\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/course",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"course"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-DXTaNEpSGFZpx0Lhs2XReIqYnw0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:36:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 400,\n    \"message\": \"Program with Id 17 does not exist\",\n    \"stack\": null\n}"
+						},
+						{
+							"name": "failed: Cannot add Core course to Elective Program",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"courseName\": \"Basics of Instruments\",\r\n    \"type\": \"core\",\r\n    \"description\": \"Consists of theories of Musical Instruments\",\r\n    \"programId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/course",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"course"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-CAsV4FGwSngKZkVqHgUx7vZwLUo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:36:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 400,\n    \"message\": \"Can't add Elective Course to a Core Program and vice-versa\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch All Courses",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/course",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"course"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/course",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"course"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1112"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"458-PvfZYRjQQdBR3Wqrbj1D9oQOp40\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:40:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"courseName\": \"Basics of Music\",\n            \"courseCode\": \"CBA-1681795178640\",\n            \"type\": \"core\",\n            \"description\": \"Consists of abc of Music and Musical Theories\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:19:38.000Z\",\n            \"updatedAt\": \"2023-04-18T05:19:38.000Z\",\n            \"programId\": 1\n        },\n        {\n            \"id\": 2,\n            \"courseName\": \"Basics of Instruments\",\n            \"courseCode\": \"CBA-1681796279288\",\n            \"type\": \"core\",\n            \"description\": \"Consists of theories of Musical Instruments\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:37:59.000Z\",\n            \"updatedAt\": \"2023-04-18T05:37:59.000Z\",\n            \"programId\": 1\n        },\n        {\n            \"id\": 3,\n            \"courseName\": \"Psychology of human listening\",\n            \"courseCode\": \"CBA-1681796341959\",\n            \"type\": \"core\",\n            \"description\": \"Consists of theories of human Psychology\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:39:01.000Z\",\n            \"updatedAt\": \"2023-04-18T05:39:01.000Z\",\n            \"programId\": 2\n        },\n        {\n            \"id\": 4,\n            \"courseName\": \"Lighting systems in Sound\",\n            \"courseCode\": \"CBA-1681796399497\",\n            \"type\": \"core\",\n            \"description\": \"Consists of theories of light systems\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:39:59.000Z\",\n            \"updatedAt\": \"2023-04-18T05:39:59.000Z\",\n            \"programId\": 2\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Course",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/course/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/course/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"course",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "587"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24b-nWC/drJmmtEHHnPKzb88E723oxI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 05:44:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"courseName\": \"Basics of Music\",\n        \"courseCode\": \"CBA-1681795178640\",\n        \"type\": \"core\",\n        \"description\": \"Consists of abc of Music and Musical Theories\",\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-04-18T05:19:38.000Z\",\n        \"updatedAt\": \"2023-04-18T05:19:38.000Z\",\n        \"programId\": 1,\n        \"program\": {\n            \"id\": 1,\n            \"programName\": \"Diploma in Sound Engineering\",\n            \"programCode\": \"ABC-1681794093934\",\n            \"type\": \"core\",\n            \"details\": \"Full time in campus 4 years degree program\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:01:33.000Z\",\n            \"updatedAt\": \"2023-04-18T05:01:33.000Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Course",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/course/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Course",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/course/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Course By Program Id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/course?programId=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"course"
+							],
+							"query": [
+								{
+									"key": "programId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/course?programId=1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"course"
+									],
+									"query": [
+										{
+											"key": "programId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "857"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"359-m62Itz7O9ObSlb+CXsxlvo/g24Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 15:24:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"courseName\": \"Basics of Music\",\n            \"courseCode\": \"CBA-1681795178640\",\n            \"type\": \"core\",\n            \"description\": \"Consists of abc of Music and Musical Theories\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:19:38.000Z\",\n            \"updatedAt\": \"2023-04-18T05:19:38.000Z\",\n            \"program\": {\n                \"id\": 1,\n                \"programName\": \"Diploma in Sound Engineering\",\n                \"programCode\": \"ABC-1681794093934\",\n                \"type\": \"core\",\n                \"isActive\": \"A\",\n                \"programType\": \"core\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"courseName\": \"Basics of Instruments\",\n            \"courseCode\": \"CBA-1681796279288\",\n            \"type\": \"core\",\n            \"description\": \"Consists of theories of Musical Instruments\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:37:59.000Z\",\n            \"updatedAt\": \"2023-04-18T05:37:59.000Z\",\n            \"program\": {\n                \"id\": 1,\n                \"programName\": \"Diploma in Sound Engineering\",\n                \"programCode\": \"ABC-1681794093934\",\n                \"type\": \"core\",\n                \"isActive\": \"A\",\n                \"programType\": \"core\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Session Management",
+			"item": [
+				{
+					"name": "Create a Session",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sessionName\": \"Two weeks Music Theories\",\r\n    \"type\": \"classroom\",\r\n    \"timeDuration\": \"2 weeks\",\r\n    \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\r\n    \"courseId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/session",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"session"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sessionName\": \"Two weeks Music Theories\",\r\n    \"type\": \"classroom\",\r\n    \"timeDuration\": \"2 weeks\",\r\n    \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\r\n    \"courseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/session",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"session"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "407"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"197-AF1xza2H6ZdkaJlHQhA0cXMVuIs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 06:14:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Session created successfully\",\n    \"data\": {\n        \"isActive\": \"A\",\n        \"id\": 1,\n        \"sessionName\": \"Two weeks Music Theories\",\n        \"type\": \"classroom\",\n        \"timeDuration\": \"2 weeks\",\n        \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n        \"courseId\": 1,\n        \"sessionCode\": \"SSS-1681798467449\",\n        \"updatedAt\": \"2023-04-18T06:14:27.450Z\",\n        \"createdAt\": \"2023-04-18T06:14:27.450Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch All Sessions",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/session",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"session"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/session",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"session"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "723"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d3-p71SZ1erTn5bvTjYy9sqbdcTQbw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 06:16:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"sessionName\": \"Two weeks Music Theories\",\n            \"sessionCode\": \"SSS-1681798467449\",\n            \"timeDuration\": \"2 weeks\",\n            \"type\": \"classroom\",\n            \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T06:14:27.000Z\",\n            \"updatedAt\": \"2023-04-18T06:14:27.000Z\",\n            \"courseId\": 1\n        },\n        {\n            \"id\": 2,\n            \"sessionName\": \"Two weeks Music Lab\",\n            \"sessionCode\": \"SSS-1681798531397\",\n            \"timeDuration\": \"2 weeks\",\n            \"type\": \"lab\",\n            \"description\": \"Introduction with musical instruemetns are covered during two weeks of lab session\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T06:15:31.000Z\",\n            \"updatedAt\": \"2023-04-18T06:15:31.000Z\",\n            \"courseId\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Session",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/session/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"session",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/session/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"session",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "664"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"298-tIyXNKPrQ9ETxavMGYFhCC56ny8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 06:17:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"sessionName\": \"Two weeks Music Theories\",\n        \"sessionCode\": \"SSS-1681798467449\",\n        \"timeDuration\": \"2 weeks\",\n        \"type\": \"classroom\",\n        \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-04-18T06:14:27.000Z\",\n        \"updatedAt\": \"2023-04-18T06:14:27.000Z\",\n        \"courseId\": 1,\n        \"course\": {\n            \"id\": 1,\n            \"courseName\": \"Basics of Music\",\n            \"courseCode\": \"CBA-1681795178640\",\n            \"type\": \"core\",\n            \"description\": \"Consists of abc of Music and Musical Theories\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T05:19:38.000Z\",\n            \"updatedAt\": \"2023-04-18T05:19:38.000Z\",\n            \"programId\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Session",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/session/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"session",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Session",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/session/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"session",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Sessions By Course Id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/session?courseId=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"session"
+							],
+							"query": [
+								{
+									"key": "courseId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "sucess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/session?courseId=1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"session"
+									],
+									"query": [
+										{
+											"key": "courseId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1111"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"457-XOzV9ySFE5pKFXaVFDf85KLLPNw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 15:48:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"sessionName\": \"Two weeks Music Theories\",\n            \"sessionCode\": \"SSS-1681798467449\",\n            \"timeDuration\": \"2 weeks\",\n            \"type\": \"classroom\",\n            \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T06:14:27.000Z\",\n            \"updatedAt\": \"2023-04-18T06:14:27.000Z\",\n            \"course\": {\n                \"id\": 1,\n                \"courseName\": \"Basics of Music\",\n                \"courseCode\": \"CBA-1681795178640\",\n                \"type\": \"core\",\n                \"description\": \"Consists of abc of Music and Musical Theories\",\n                \"isActive\": \"A\",\n                \"programId\": 1,\n                \"courseType\": \"core\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"sessionName\": \"Two weeks Music Lab\",\n            \"sessionCode\": \"SSS-1681798531397\",\n            \"timeDuration\": \"2 weeks\",\n            \"type\": \"lab\",\n            \"description\": \"Introduction with musical instruemetns are covered during two weeks of lab session\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T06:15:31.000Z\",\n            \"updatedAt\": \"2023-04-18T06:15:31.000Z\",\n            \"course\": {\n                \"id\": 1,\n                \"courseName\": \"Basics of Music\",\n                \"courseCode\": \"CBA-1681795178640\",\n                \"type\": \"core\",\n                \"description\": \"Consists of abc of Music and Musical Theories\",\n                \"isActive\": \"A\",\n                \"programId\": 1,\n                \"courseType\": \"core\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Topic Management",
+			"item": [
+				{
+					"name": "Add a Topic",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"topicName\": \"Notes of Music Theory\",\r\n    \"description\": \"All the music notes are covered in detail\",\r\n    \"sessionIds\": [1,2],\r\n    \"courseId\": 1,\r\n    \"type\": \"core\",\r\n    \"topicCode\": \"CRS/MICROPHONES/CR/V2.5/TOPIC1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/topic",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"topic"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"topicName\": \"Notes of Music Theory\",\r\n    \"description\": \"All the music notes are covered in detail\",\r\n    \"sessionId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/topic",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "319"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13f-+IUWCzKJr8kGFgP5RZ1hNTLRU0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:39:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Topic created successfully\",\n    \"data\": {\n        \"isActive\": \"A\",\n        \"id\": 1,\n        \"topicName\": \"Notes of Music Theory\",\n        \"description\": \"All the music notes are covered in detail\",\n        \"sessionId\": 1,\n        \"topicCode\": \"TPC-1681807158931\",\n        \"updatedAt\": \"2023-04-18T08:39:18.932Z\",\n        \"createdAt\": \"2023-04-18T08:39:18.932Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch all Topics",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/topic",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"topic"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "572"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23c-ncw3tva5H+5wWsyD5uwIrVXil30\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:40:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"topicName\": \"Notes of Music Theory\",\n            \"topicCode\": \"TPC-1681807158931\",\n            \"description\": \"All the music notes are covered in detail\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T08:39:18.000Z\",\n            \"updatedAt\": \"2023-04-18T08:39:18.000Z\",\n            \"sessionId\": 1\n        },\n        {\n            \"id\": 2,\n            \"topicName\": \"Basic of western music notes\",\n            \"topicCode\": \"TPC-1681807216679\",\n            \"description\": \"All the western music notes are covered in detail\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T08:40:16.000Z\",\n            \"updatedAt\": \"2023-04-18T08:40:16.000Z\",\n            \"sessionId\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Topic",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/topic/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"topic",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "651"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28b-u7/xMZbvQ29xrbMZA6YuVWcQXpk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:41:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"topicName\": \"Notes of Music Theory\",\n        \"topicCode\": \"TPC-1681807158931\",\n        \"description\": \"All the music notes are covered in detail\",\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-04-18T08:39:18.000Z\",\n        \"updatedAt\": \"2023-04-18T08:39:18.000Z\",\n        \"sessionId\": 1,\n        \"session\": {\n            \"id\": 1,\n            \"sessionName\": \"Two weeks Music Theories\",\n            \"sessionCode\": \"SSS-1681798467449\",\n            \"timeDuration\": \"2 weeks\",\n            \"type\": \"classroom\",\n            \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T06:14:27.000Z\",\n            \"updatedAt\": \"2023-04-18T06:14:27.000Z\",\n            \"courseId\": 1\n        }\n    }\n}"
+						},
+						{
+							"name": "failed: topic not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic/10",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-rvzkX/d+ILovbKm045cNqpfI4dw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:43:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 404,\n    \"message\": \"Topic with id 10 does not exist\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Topic",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/topic/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"topic",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "651"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28b-u7/xMZbvQ29xrbMZA6YuVWcQXpk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:41:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"topicName\": \"Notes of Music Theory\",\n        \"topicCode\": \"TPC-1681807158931\",\n        \"description\": \"All the music notes are covered in detail\",\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-04-18T08:39:18.000Z\",\n        \"updatedAt\": \"2023-04-18T08:39:18.000Z\",\n        \"sessionId\": 1,\n        \"session\": {\n            \"id\": 1,\n            \"sessionName\": \"Two weeks Music Theories\",\n            \"sessionCode\": \"SSS-1681798467449\",\n            \"timeDuration\": \"2 weeks\",\n            \"type\": \"classroom\",\n            \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T06:14:27.000Z\",\n            \"updatedAt\": \"2023-04-18T06:14:27.000Z\",\n            \"courseId\": 1\n        }\n    }\n}"
+						},
+						{
+							"name": "failed: topic not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic/10",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-rvzkX/d+ILovbKm045cNqpfI4dw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:43:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 404,\n    \"message\": \"Topic with id 10 does not exist\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Topic",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/topic/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"topic",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "651"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28b-u7/xMZbvQ29xrbMZA6YuVWcQXpk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:41:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"topicName\": \"Notes of Music Theory\",\n        \"topicCode\": \"TPC-1681807158931\",\n        \"description\": \"All the music notes are covered in detail\",\n        \"isActive\": \"A\",\n        \"createdAt\": \"2023-04-18T08:39:18.000Z\",\n        \"updatedAt\": \"2023-04-18T08:39:18.000Z\",\n        \"sessionId\": 1,\n        \"session\": {\n            \"id\": 1,\n            \"sessionName\": \"Two weeks Music Theories\",\n            \"sessionCode\": \"SSS-1681798467449\",\n            \"timeDuration\": \"2 weeks\",\n            \"type\": \"classroom\",\n            \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T06:14:27.000Z\",\n            \"updatedAt\": \"2023-04-18T06:14:27.000Z\",\n            \"courseId\": 1\n        }\n    }\n}"
+						},
+						{
+							"name": "failed: topic not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic/10",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-rvzkX/d+ILovbKm045cNqpfI4dw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 08:43:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 404,\n    \"message\": \"Topic with id 10 does not exist\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Topics By Session Id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/topic?sessionId=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"topic"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/topic?sessionId=1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"topic"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1116"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45c-W5blMIZ6LPseo2elp/xnbT6Re/A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 15:55:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"topicName\": \"Notes of Music Theory\",\n            \"topicCode\": \"TPC-1681807158931\",\n            \"description\": \"All the music notes are covered in detail\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T08:39:18.000Z\",\n            \"updatedAt\": \"2023-04-18T08:39:18.000Z\",\n            \"session\": {\n                \"id\": 1,\n                \"sessionName\": \"Two weeks Music Theories\",\n                \"sessionCode\": \"SSS-1681798467449\",\n                \"timeDuration\": \"2 weeks\",\n                \"type\": \"classroom\",\n                \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n                \"isActive\": \"A\",\n                \"courseId\": 1,\n                \"sessionType\": \"classroom\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"topicName\": \"Basic of western music notes\",\n            \"topicCode\": \"TPC-1681807216679\",\n            \"description\": \"All the western music notes are covered in detail\",\n            \"isActive\": \"A\",\n            \"createdAt\": \"2023-04-18T08:40:16.000Z\",\n            \"updatedAt\": \"2023-04-18T08:40:16.000Z\",\n            \"session\": {\n                \"id\": 1,\n                \"sessionName\": \"Two weeks Music Theories\",\n                \"sessionCode\": \"SSS-1681798467449\",\n                \"timeDuration\": \"2 weeks\",\n                \"type\": \"classroom\",\n                \"description\": \"Different Theories of Music are covered during two weeks of classroom session\",\n                \"isActive\": \"A\",\n                \"courseId\": 1,\n                \"sessionType\": \"classroom\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Student Management",
+			"item": [
+				{
+					"name": "Add Student Details",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"U_S_ID\": \"ST-1682050031724\",\r\n    \"guardianDetails\": {\r\n        \"name\": \"Sonia Gandhi\",\r\n        \"relation\": \"mother\",\r\n        \"gender\": \"female\",\r\n        \"localAddress\": \"1 Akbar Road New Dehi, India-110001\",\r\n        \"permanentAddress\": \"1 Akbar Road New Dehi, India-110001\",\r\n        \"email\": \"sonia.g@gmail.com\",\r\n        \"phone1\": \"+91-7988097593\",\r\n        \"phone2\": \"\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/student-details",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student-details"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "student details already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"U_S_ID\": \"ST-1682050347366\",\r\n    \"guardianDetails\": {\r\n        \"name\": \"Rajesh Pilot\",\r\n        \"relation\": \"father\",\r\n        \"gender\": \"male\",\r\n        \"localAddress\": \"1 Akbar Road Saharanpur, Uttar Pradesh, India-231001\",\r\n        \"permanentAddress\": \"1 Akbar Road Saharanpur, Uttar Pradesh, India-231001\",\r\n        \"email\": \"rajesh.p@gmail.com\",\r\n        \"phone1\": \"+91-7988097593\",\r\n        \"phone2\": \"\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/student-details",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student-details"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "120"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"78-kOeHjY8b0y3lGNFbcHIyL/Yj3Fw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 Apr 2023 05:02:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 400,\n    \"message\": \"Student Details with U_S_ID: ST-1682050347366 already exists\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Students",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/student-details",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student-details"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/student-details",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student-details"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1877"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"755-SQbSe+Dfyv/JghxaPPgwj0iGWyI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 Apr 2023 05:29:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"U_S_ID\": \"ST-1682050031724\",\n            \"guardianDetails\": {\n                \"name\": \"Sonia Gandhi\",\n                \"email\": \"sonia.g@gmail.com\",\n                \"gender\": \"female\",\n                \"phone1\": \"+91-7988097593\",\n                \"phone2\": \"\",\n                \"relation\": \"mother\",\n                \"localAddress\": \"1 Akbar Road New Dehi, India-110001\",\n                \"permanentAddress\": \"1 Akbar Road New Dehi, India-110001\"\n            },\n            \"DOB\": \"11-12-1986\",\n            \"gender\": \"M\",\n            \"email\": \"rahul.gandhi@gmail.com\",\n            \"phone1\": \"+91-7988097591\",\n            \"phone2\": null,\n            \"localAddress\": \"1 Akbar Road New Dehi, India-110001\",\n            \"permanentAddress\": \"1 Akbar Road New Dehi, India-110001\",\n            \"studentName\": \"Rahul Gandhi\",\n            \"enrolledAt\": \"2023-04-21T04:07:11.000Z\",\n            \"studentId\": 2\n        },\n        {\n            \"U_S_ID\": \"ST-1682050160331\",\n            \"guardianDetails\": {\n                \"name\": \"Sonia Gandhi\",\n                \"email\": \"sonia.g@gmail.com\",\n                \"gender\": \"female\",\n                \"phone1\": \"+91-7988097593\",\n                \"phone2\": \"\",\n                \"relation\": \"mother\",\n                \"localAddress\": \"1 Akbar Road New Dehi, India-110001\",\n                \"permanentAddress\": \"1 Akbar Road New Dehi, India-110001\"\n            },\n            \"DOB\": \"10-11-1976\",\n            \"gender\": \"M\",\n            \"email\": \"m.khadge@gmail.com\",\n            \"phone1\": \"+91-7988097592\",\n            \"phone2\": null,\n            \"localAddress\": \"2 Akbar Road New Dehi, India-110001\",\n            \"permanentAddress\": \"2 Akbar Road New Dehi, India-110001\",\n            \"studentName\": \"Mallikarjun Khadge\",\n            \"enrolledAt\": \"2023-04-21T04:09:20.000Z\",\n            \"studentId\": 3\n        },\n        {\n            \"U_S_ID\": \"ST-1682050347366\",\n            \"guardianDetails\": {\n                \"name\": \"Rajesh Pilot\",\n                \"email\": \"rajesh.p@gmail.com\",\n                \"gender\": \"male\",\n                \"phone1\": \"+91-7988097593\",\n                \"phone2\": \"\",\n                \"relation\": \"father\",\n                \"localAddress\": \"1 Akbar Road Saharanpur, Uttar Pradesh, India-231001\",\n                \"permanentAddress\": \"1 Akbar Road Saharanpur, Uttar Pradesh, India-231001\"\n            },\n            \"DOB\": \"01-03-1990\",\n            \"gender\": \"M\",\n            \"email\": \"sachin.pilotg@gmail.com\",\n            \"phone1\": \"+91-7988097594\",\n            \"phone2\": null,\n            \"localAddress\": \"12 New Capital Road Jaipur, Rajsthan-303329\",\n            \"permanentAddress\": \"12 New Capital Road Jaipur, Rajsthan-303329\",\n            \"studentName\": \"Sachin Pilot\",\n            \"enrolledAt\": \"2023-04-21T04:12:27.000Z\",\n            \"studentId\": 5\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch Single Student",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/student-details/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student-details",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/student-details/2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student-details",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "656"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"290-iuEgCivzFld6vquDbICiDq+8Aa4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 May 2023 06:08:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Rahul Gandhi\",\n        \"DOB\": \"11-12-1986\",\n        \"gender\": \"M\",\n        \"email\": \"rahul.gandhi@gmail.com\",\n        \"phone1\": \"+91-7988097591\",\n        \"phone2\": null,\n        \"localAddress\": \"1 Akbar Road New Dehi, India-110001\",\n        \"permanentAddress\": \"1 Akbar Road New Dehi, India-110001\",\n        \"U_S_ID\": \"ST-1682050031724\",\n        \"isActive\": \"A\",\n        \"enrolledAt\": \"2023-04-21T04:07:11.000Z\",\n        \"guardianDetails\": {\n            \"name\": \"Sonia Gandhi\",\n            \"email\": \"sonia.g@gmail.com\",\n            \"gender\": \"female\",\n            \"phone1\": \"+91-7988097593\",\n            \"phone2\": \"\",\n            \"relation\": \"mother\",\n            \"localAddress\": \"1 Akbar Road New Dehi, India-110001\",\n            \"permanentAddress\": \"1 Akbar Road New Dehi, India-110001\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Student Detail",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountDetails\": {\r\n        \"paymentPlan\": \"annual\",\r\n        \"fees\": 122000,\r\n        \"discount\": 2000,\r\n        \"totalFees\": 120000,\r\n        \"PDC_details\": {\r\n            \"chq_no\": 12345,\r\n            \"issuing_bank\": \"Bank of Baroda\",\r\n            \"amount\": 120000,\r\n            \"chq_date\": \"2023-05-23\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/student-details/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student-details",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updating account details",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountDetails\": {\r\n        \"paymentPlan\": \"annual\",\r\n        \"fees\": 122000,\r\n        \"discount\": 2000,\r\n        \"totalFees\": 120000,\r\n        \"PDC_details\": {\r\n            \"chq_no\": 12345,\r\n            \"issuing_bank\": \"Bank of Baroda\",\r\n            \"amount\": 120000,\r\n            \"chq_date\": \"2023-05-23\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/student-details/2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student-details",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-BeKkXJfS2rFYxpBpr+WiAB2tqzI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 May 2023 06:52:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"accounts Details updated\",\n    \"data\": {\n        \"paymentPlan\": \"annual\",\n        \"fees\": 122000,\n        \"discount\": 2000,\n        \"totalFees\": 120000,\n        \"PDC_details\": {\n            \"chq_no\": 12345,\n            \"issuing_bank\": \"Bank of Baroda\",\n            \"amount\": 120000,\n            \"chq_date\": \"2023-05-23\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Student",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/student-details/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student-details",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Admit Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/student/bulk-upload",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"bulk-upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Faculty Management",
+			"item": [
+				{
+					"name": "Add New Faculty",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Shreya Deliwala\",\r\n    \"DOB\": \"01-03-1996\",\r\n    \"gender\": \"M\",\r\n    \"email\": \"shreya.d@gmail.com\",\r\n    \"phone1\": \"+91-9664000539\",\r\n    \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\r\n    \"permanentAddress\": \"SAME\",\r\n    \"facultyType\": \"PROFESSIONAL\",\r\n    \"availability\": \"Weekends\",\r\n    \"remunerationPlan\": \"MONTHLY\",\r\n    \"academicDetails\": {\r\n        \"program\": \"BBA\",\r\n        \"batch\": \"2017-2020\",\r\n        \"elective\": \"trends_n_reels\",\r\n        \"dateOfAdmission\": \"12-12-2020\"\r\n    },\r\n    \"accountDetails\": {\r\n        \"facutlyCharges\": 16000,\r\n        \"facultyPAN\": \"PAN1236D\",\r\n        \"facultyGSTIN\": \"GSTIN12345689IN\",\r\n        \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\r\n        \"remunerationPlan\": \"MONTHLY\",\r\n        \"bankName\": \"AXIS Bank\",\r\n        \"accountHolderName\": \"Shreya Deliwala\",\r\n        \"accoutNumber\": \"20140001246\",\r\n        \"bankIFSCcode\": \"AXIS0012345\",\r\n        \"bankBranch\": \"Kurla\"\r\n    },\r\n    \"careerDetails\": [\r\n        {\r\n            \"designation\": \"Video Production\",\r\n            \"employer\": \"Intagram India\",\r\n            \"from\": \"Jan 2020\",\r\n            \"to\": \"Present\",\r\n            \"area\": \"Mumbai\",\r\n            \"skills\": \"Reels, Video editor\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/faculty",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Sonu Nigam\",\r\n    \"DOB\": \"01-03-1986\",\r\n    \"gender\": \"M\",\r\n    \"email\": \"sonu.nigam@gmail.com\",\r\n    \"phone1\": \"+91-9664000537\",\r\n    \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\r\n    \"permanentAddress\": \"SAME\",\r\n    \"academicDetails\": {\r\n        \"program\": \"MA\",\r\n        \"batch\": \"2011-2013\",\r\n        \"elective\": \"environment_studies\",\r\n        \"dateOfAdmission\": \"12-12-2014\"\r\n    },\r\n    \"accountDetails\": {\r\n        \"facutlyCharges\": 14000,\r\n        \"facultyPAN\": \"PAN1235D\",\r\n        \"facultyGSTIN\": \"GSTIN12345679IN\",\r\n        \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\r\n        \"remunerationPlan\": \"MONTHLY\",\r\n        \"bankName\": \"AXIS Bank\",\r\n        \"accountHolderName\": \"Sonu Nigam\",\r\n        \"accoutNumber\": \"20140001244\",\r\n        \"bankIFSCcode\": \"AXIS0012345\",\r\n        \"bankBranch\": \"Kurla\"\r\n    },\r\n    \"careerDetails\": [\r\n        {\r\n            \"designation\": \"Audio Post-Production Engineer\",\r\n            \"employer\": \"Beatfactory Academy\",\r\n            \"from\": \"Dec 2018\",\r\n            \"to\": \"Apr 2019\",\r\n            \"area\": \"New Delhi\",\r\n            \"skills\": \"Sound Editor,Dialgoue Editor\"\r\n        },\r\n        {\r\n            \"designation\": \"Music Producer\",\r\n            \"employer\": \"T-series Mumbai\",\r\n            \"from\": \"Jan 2020\",\r\n            \"to\": \"Present\",\r\n            \"area\": \"Mumbai\",\r\n            \"skills\": \"Singer, Music composer\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/faculty",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"faculty"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1451"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5ab-pq7DlVLhgBwOtP6B1WtyolhYexw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 11:09:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Faculty added successfully\",\n    \"data\": {\n        \"userDetails\": {\n            \"id\": 13,\n            \"name\": \"Sonu Nigam\",\n            \"DOB\": \"01-03-1986\",\n            \"gender\": \"M\",\n            \"email\": \"sonu.nigam@gmail.com\",\n            \"phone1\": \"+91-9664000537\",\n            \"phone2\": null,\n            \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"U_S_ID\": \"EMP-16919249932\",\n            \"isActive\": \"A\",\n            \"roleId\": 4,\n            \"updatedAt\": \"2023-08-13T11:09:53.262Z\",\n            \"createdAt\": \"2023-08-13T11:09:53.262Z\"\n        },\n        \"facultyDetails\": {\n            \"id\": 2,\n            \"employee_id\": \"EMP-16919249932\",\n            \"academicDetails\": {\n                \"program\": \"MA\",\n                \"batch\": \"2011-2013\",\n                \"elective\": \"environment_studies\",\n                \"dateOfAdmission\": \"12-12-2014\"\n            },\n            \"accountDetails\": {\n                \"facutlyCharges\": 14000,\n                \"facultyPAN\": \"PAN1235D\",\n                \"facultyGSTIN\": \"GSTIN12345679IN\",\n                \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n                \"remunerationPlan\": \"MONTHLY\",\n                \"bankName\": \"AXIS Bank\",\n                \"accountHolderName\": \"Sonu Nigam\",\n                \"accoutNumber\": \"20140001244\",\n                \"bankIFSCcode\": \"AXIS0012345\",\n                \"bankBranch\": \"Kurla\"\n            },\n            \"careerDetails\": [\n                {\n                    \"expId\": 1,\n                    \"designation\": \"Audio Post-Production Engineer\",\n                    \"employer\": \"Beatfactory Academy\",\n                    \"from\": \"Dec 2018\",\n                    \"to\": \"Apr 2019\",\n                    \"area\": \"New Delhi\",\n                    \"skills\": \"Sound Editor,Dialgoue Editor\"\n                },\n                {\n                    \"expId\": 2,\n                    \"designation\": \"Music Producer\",\n                    \"employer\": \"T-series Mumbai\",\n                    \"from\": \"Jan 2020\",\n                    \"to\": \"Present\",\n                    \"area\": \"Mumbai\",\n                    \"skills\": \"Singer, Music composer\"\n                }\n            ],\n            \"userId\": 13,\n            \"updatedAt\": \"2023-08-13T11:09:53.405Z\",\n            \"createdAt\": \"2023-08-13T11:09:53.405Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "final success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Shreya Deliwala\",\r\n    \"DOB\": \"01-03-1996\",\r\n    \"gender\": \"M\",\r\n    \"email\": \"shreya.d@gmail.com\",\r\n    \"phone1\": \"+91-9664000539\",\r\n    \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\r\n    \"permanentAddress\": \"SAME\",\r\n    \"facultyType\": \"PROFESSIONAL\",\r\n    \"availability\": \"Weekends\",\r\n    \"remnunerationPlan\": \"MONTHLY\",\r\n    \"academicDetails\": {\r\n        \"program\": \"BBA\",\r\n        \"batch\": \"2017-2020\",\r\n        \"elective\": \"trends_n_reels\",\r\n        \"dateOfAdmission\": \"12-12-2020\"\r\n    },\r\n    \"accountDetails\": {\r\n        \"facutlyCharges\": 16000,\r\n        \"facultyPAN\": \"PAN1236D\",\r\n        \"facultyGSTIN\": \"GSTIN12345689IN\",\r\n        \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\r\n        \"remunerationPlan\": \"MONTHLY\",\r\n        \"bankName\": \"AXIS Bank\",\r\n        \"accountHolderName\": \"Shreya Deliwala\",\r\n        \"accoutNumber\": \"20140001246\",\r\n        \"bankIFSCcode\": \"AXIS0012345\",\r\n        \"bankBranch\": \"Kurla\"\r\n    },\r\n    \"careerDetails\": [\r\n        {\r\n            \"designation\": \"Video Production\",\r\n            \"employer\": \"Intagram India\",\r\n            \"from\": \"Jan 2020\",\r\n            \"to\": \"Present\",\r\n            \"area\": \"Mumbai\",\r\n            \"skills\": \"Reels, Video editor\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/faculty",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"faculty"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1338"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53a-ZO+6ia8lyZCDh9IR/J5iDq31L94\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 11:39:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"Faculty added successfully\",\n    \"data\": {\n        \"userDetails\": {\n            \"id\": 14,\n            \"name\": \"Shreya Deliwala\",\n            \"DOB\": \"01-03-1996\",\n            \"gender\": \"M\",\n            \"email\": \"shreya.d@gmail.com\",\n            \"phone1\": \"+91-9664000539\",\n            \"phone2\": null,\n            \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"U_S_ID\": \"EMP-16919267510\",\n            \"isActive\": \"A\",\n            \"roleId\": 4,\n            \"updatedAt\": \"2023-08-13T11:39:11.010Z\",\n            \"createdAt\": \"2023-08-13T11:39:11.010Z\"\n        },\n        \"facultyDetails\": {\n            \"employeeId\": null,\n            \"id\": 3,\n            \"facultyType\": \"PROFESSIONAL\",\n            \"availability\": \"Weekends\",\n            \"remunerationPlan\": \"MONTHLY\",\n            \"academicDetails\": {\n                \"program\": \"BBA\",\n                \"batch\": \"2017-2020\",\n                \"elective\": \"trends_n_reels\",\n                \"dateOfAdmission\": \"12-12-2020\"\n            },\n            \"accountDetails\": {\n                \"facutlyCharges\": 16000,\n                \"facultyPAN\": \"PAN1236D\",\n                \"facultyGSTIN\": \"GSTIN12345689IN\",\n                \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n                \"remunerationPlan\": \"MONTHLY\",\n                \"bankName\": \"AXIS Bank\",\n                \"accountHolderName\": \"Shreya Deliwala\",\n                \"accoutNumber\": \"20140001246\",\n                \"bankIFSCcode\": \"AXIS0012345\",\n                \"bankBranch\": \"Kurla\"\n            },\n            \"careerDetails\": [\n                {\n                    \"expId\": 1,\n                    \"designation\": \"Video Production\",\n                    \"employer\": \"Intagram India\",\n                    \"from\": \"Jan 2020\",\n                    \"to\": \"Present\",\n                    \"area\": \"Mumbai\",\n                    \"skills\": \"Reels, Video editor\"\n                }\n            ],\n            \"userId\": 14,\n            \"updatedAt\": \"2023-08-13T11:39:11.125Z\",\n            \"createdAt\": \"2023-08-13T11:39:11.125Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Faculties",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/faculty",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/faculty",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"faculty"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3454"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d7e-le/rT2coKmsaBU5EFk2w3nqJDTY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 11:42:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": [\n        {\n            \"DOB\": \"03-03-1986\",\n            \"gender\": \"M\",\n            \"email\": \"mj5@gmail.com\",\n            \"phone1\": \"+91-9664000535\",\n            \"phone2\": null,\n            \"localAddress\": \"Nashik Road, Nashik, Maharashtra-4220053\",\n            \"permanentAddress\": \"Nashik Road, Nashik, Maharashtra-4220053\",\n            \"facultyName\": \"Mandar Jambotkar\",\n            \"joinedAt\": \"2023-08-13T11:01:49.000Z\",\n            \"facultyId\": 12,\n            \"employeeId\": \"EMP-16919245092\",\n            \"facultyType\": \"PROFESSIONAL\",\n            \"availability\": \"Regular\",\n            \"remunerationPlan\": \"MONTHLY\",\n            \"academicDetails\": {\n                \"batch\": \"2014-2018\",\n                \"program\": \"BSC\",\n                \"elective\": \"environment_studies\",\n                \"dateOfAdmission\": \"12-12-2014\"\n            },\n            \"accountDetails\": {\n                \"bankName\": \"AXIS Bank\",\n                \"bankBranch\": \"Nashik Road\",\n                \"facultyPAN\": \"PAN1234D\",\n                \"accoutNumber\": \"20140001234\",\n                \"bankIFSCcode\": \"AXIS0012345\",\n                \"facultyGSTIN\": \"GSTIN12345678IN\",\n                \"facutlyCharges\": 14000,\n                \"permanentAddress\": \"Nashik Road, Nashik, Maharashtra-4220053\",\n                \"remunerationPlan\": \"MONTHLY\",\n                \"accountHolderName\": \"Mandar Jambotkar\"\n            },\n            \"careerDetails\": [\n                {\n                    \"to\": \"Apr 2019\",\n                    \"area\": \"New Delhi\",\n                    \"from\": \"Dec 2018\",\n                    \"expId\": 1,\n                    \"skills\": \"Sound Editor,Dialgoue Editor\",\n                    \"employer\": \"Beatfactory Academy\",\n                    \"designation\": \"Audio Post-Production Engineer\"\n                }\n            ]\n        },\n        {\n            \"DOB\": \"01-03-1986\",\n            \"gender\": \"M\",\n            \"email\": \"sonu.nigam@gmail.com\",\n            \"phone1\": \"+91-9664000537\",\n            \"phone2\": null,\n            \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"facultyName\": \"Sonu Nigam\",\n            \"joinedAt\": \"2023-08-13T11:09:53.000Z\",\n            \"facultyId\": 13,\n            \"employeeId\": \"EMP-16919249932\",\n            \"facultyType\": \"AMATEUR\",\n            \"availability\": \"Weekends\",\n            \"remunerationPlan\": \"WEEKLY\",\n            \"academicDetails\": {\n                \"batch\": \"2011-2013\",\n                \"program\": \"MA\",\n                \"elective\": \"environment_studies\",\n                \"dateOfAdmission\": \"12-12-2014\"\n            },\n            \"accountDetails\": {\n                \"bankName\": \"AXIS Bank\",\n                \"bankBranch\": \"Kurla\",\n                \"facultyPAN\": \"PAN1235D\",\n                \"accoutNumber\": \"20140001244\",\n                \"bankIFSCcode\": \"AXIS0012345\",\n                \"facultyGSTIN\": \"GSTIN12345679IN\",\n                \"facutlyCharges\": 14000,\n                \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n                \"remunerationPlan\": \"MONTHLY\",\n                \"accountHolderName\": \"Sonu Nigam\"\n            },\n            \"careerDetails\": [\n                {\n                    \"to\": \"Apr 2019\",\n                    \"area\": \"New Delhi\",\n                    \"from\": \"Dec 2018\",\n                    \"expId\": 1,\n                    \"skills\": \"Sound Editor,Dialgoue Editor\",\n                    \"employer\": \"Beatfactory Academy\",\n                    \"designation\": \"Audio Post-Production Engineer\"\n                },\n                {\n                    \"to\": \"Present\",\n                    \"area\": \"Mumbai\",\n                    \"from\": \"Jan 2020\",\n                    \"expId\": 2,\n                    \"skills\": \"Singer, Music composer\",\n                    \"employer\": \"T-series Mumbai\",\n                    \"designation\": \"Music Producer\"\n                }\n            ]\n        },\n        {\n            \"DOB\": \"01-03-1996\",\n            \"gender\": \"M\",\n            \"email\": \"shreya.d@gmail.com\",\n            \"phone1\": \"+91-9664000539\",\n            \"phone2\": null,\n            \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"facultyName\": \"Shreya Deliwala\",\n            \"joinedAt\": \"2023-08-13T11:39:11.000Z\",\n            \"facultyId\": 14,\n            \"employeeId\": \"EMP-16919267510\",\n            \"facultyType\": \"PROFESSIONAL\",\n            \"availability\": \"Weekends\",\n            \"remunerationPlan\": \"MONTHLY\",\n            \"academicDetails\": {\n                \"batch\": \"2017-2020\",\n                \"program\": \"BBA\",\n                \"elective\": \"trends_n_reels\",\n                \"dateOfAdmission\": \"12-12-2020\"\n            },\n            \"accountDetails\": {\n                \"bankName\": \"AXIS Bank\",\n                \"bankBranch\": \"Kurla\",\n                \"facultyPAN\": \"PAN1236D\",\n                \"accoutNumber\": \"20140001246\",\n                \"bankIFSCcode\": \"AXIS0012345\",\n                \"facultyGSTIN\": \"GSTIN12345689IN\",\n                \"facutlyCharges\": 16000,\n                \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n                \"remunerationPlan\": \"MONTHLY\",\n                \"accountHolderName\": \"Shreya Deliwala\"\n            },\n            \"careerDetails\": [\n                {\n                    \"to\": \"Present\",\n                    \"area\": \"Mumbai\",\n                    \"from\": \"Jan 2020\",\n                    \"expId\": 1,\n                    \"skills\": \"Reels, Video editor\",\n                    \"employer\": \"Intagram India\",\n                    \"designation\": \"Video Production\"\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Faculty Details",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/faculty/14",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty",
+								"14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/faculty/14",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"faculty",
+										"14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46e-8pcS0blphCy6E04xS899kbnq4xA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 11:53:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"DOB\": \"01-03-1996\",\n        \"gender\": \"M\",\n        \"email\": \"shreya.d@gmail.com\",\n        \"phone1\": \"+91-9664000539\",\n        \"phone2\": null,\n        \"localAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n        \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n        \"facultyName\": \"Shreya Deliwala\",\n        \"joinedOn\": \"2023-08-13T11:39:11.000Z\",\n        \"facultyId\": 14,\n        \"employeeId\": \"EMP-16919267510\",\n        \"facultyType\": \"PROFESSIONAL\",\n        \"availability\": \"Weekends\",\n        \"remunerationPlan\": \"MONTHLY\",\n        \"academicDetails\": {\n            \"batch\": \"2017-2020\",\n            \"program\": \"BBA\",\n            \"elective\": \"trends_n_reels\",\n            \"dateOfAdmission\": \"12-12-2020\"\n        },\n        \"accountDetails\": {\n            \"bankName\": \"AXIS Bank\",\n            \"bankBranch\": \"Kurla\",\n            \"facultyPAN\": \"PAN1236D\",\n            \"accoutNumber\": \"20140001246\",\n            \"bankIFSCcode\": \"AXIS0012345\",\n            \"facultyGSTIN\": \"GSTIN12345689IN\",\n            \"facutlyCharges\": 16000,\n            \"permanentAddress\": \"Kurla Bandra complex, Mumbai, Maharashtra-400012\",\n            \"remunerationPlan\": \"MONTHLY\",\n            \"accountHolderName\": \"Shreya Deliwala\"\n        },\n        \"careerDetails\": [\n            {\n                \"to\": \"Present\",\n                \"area\": \"Mumbai\",\n                \"from\": \"Jan 2020\",\n                \"expId\": 1,\n                \"skills\": \"Reels, Video editor\",\n                \"employer\": \"Intagram India\",\n                \"designation\": \"Video Production\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Faculty Details",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/faculty/14",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Faculty",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/faculty/14",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Faculty Experience",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/faculty-experience/14",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty-experience",
+								"14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/faculty-experience/14",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"faculty-experience",
+										"14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "360"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"168-GNg1IUub2WJTY2UjqOjxLNECdCQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Aug 2023 11:59:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"fetched successfully\",\n    \"data\": {\n        \"facultyName\": \"Shreya Deliwala\",\n        \"joinedOn\": \"2023-08-13T11:39:11.000Z\",\n        \"facultyId\": 14,\n        \"employeeId\": \"EMP-16919267510\",\n        \"careerDetails\": [\n            {\n                \"to\": \"Present\",\n                \"area\": \"Mumbai\",\n                \"from\": \"Jan 2020\",\n                \"expId\": 1,\n                \"skills\": \"Reels, Video editor\",\n                \"employer\": \"Intagram India\",\n                \"designation\": \"Video Production\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Faculty Experience",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"designation\": \"Music Teacher\",\r\n        \"employer\": \"Music India pvt ltd\",\r\n        \"from\": \"May 2018\",\r\n        \"to\": \"June 2020\",\r\n        \"area\": \"New Delhi\",\r\n        \"skills\": \"Teaching, singing\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/faculty-experience/12",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty-experience",
+								"12"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "fail: faculty id not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"designation\": \"Music Teach\",\r\n        \"employer\": \"Music India pvt ltd\",\r\n        \"from\": \"May 2018\",\r\n        \"to\": \"June 2020\",\r\n        \"area\": \"New Delhi\",\r\n        \"skills\": \"Teaching, singing\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/faculty-experience/155",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"faculty-experience",
+										"155"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5e-/tYXOLBEgh9S+ytnPQJieIMZzEk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 26 Aug 2023 09:17:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"statusCode\": 400,\n    \"message\": \"Faculty with id: 155 was not found\",\n    \"stack\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Faculty Experience",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/faculty-experience/14",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty-experience",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Faculty Experience",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/faculty-experience/14",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"faculty-experience",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
