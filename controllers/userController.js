@@ -35,7 +35,44 @@ function signToken(userId, userName, userRole) {
  *  2. For different types of registration, handle it on pre-middleware
  */
 const registerUser = asyncWrapper(async (req, res, next) => {
-  if (req.userRole !== 'ADMIN') throw new AppError(400, 'You are unauthorized to register a user');
+  //  if (req.userRole !== 'ADMIN') throw new AppError(400, 'You are unauthorized to register a user');
+const roles = ['SUPER_ADMIN', 'ADMIN', 'STUDENT', 'STAFF', 'FACULTY'];
+
+// Retrieve createdUserRole from headers
+const createdUserRole = req.headers['userrole'];
+
+if (!createdUserRole || !roles.includes(createdUserRole)) {
+  throw new AppError(403, `Invalid or missing user role in headers`);
+}
+
+// Check if the created user has the authority to create users
+if (createdUserRole !== 'ADMIN' && createdUserRole !== 'SUPER_ADMIN') {
+  throw new AppError(403, 'You are unauthorized to register a user');
+}
+
+const roleIdParam = req.query.roleId ? parseInt(req.query.roleId, 10) : null;
+
+  // Ensure that the roleIdParam is a valid role
+  if (roleIdParam !== null && !roles.includes(roles[roleIdParam - 1])) {
+    throw new AppError(403, `Invalid roleId specified`);
+  }
+
+  // Use the roleIdParam for insertion, or default to the role index of the user creating
+  const roleId = roleIdParam || roles.indexOf(createdUserRole) + 1;
+
+  // Ensure that the created user has a valid role
+  if (!roles.includes(roles[roleId - 1])) {
+    throw new AppError(403, `Invalid roles specified`);
+  }
+
+  // Check if a super admin already exists
+  if (roleId === 1) {
+    const superAdminCount = await UserModel.count({ where: { roleId: 1 } });
+    if (superAdminCount > 0) {
+      throw new AppError(400, 'A super admin already exists. Cannot create another super admin.');
+    }
+  }
+
 
   const PASS_REGEX = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*[\d|@#$!%*?&])[\p{L}\d@#$!%*?&]{6,20}$/gmu;
   const NAME_REGEX = /^[A-Za-z.\s]{2,50}$/;
@@ -70,9 +107,9 @@ const registerUser = asyncWrapper(async (req, res, next) => {
   }
 
   // Role Check: RoleId is intended to be passed by an admin user
-  const roles = [1, 2, 3, 4];
-  const roleId = req.query.roleId * 1 || 2;
-  if (!roles.includes(roleId)) throw new AppError(403, `Allowed roles are ${roles}`);
+  // const roles = [1, 2, 3, 4];
+  // const roleId = req.query.roleId * 1 || 2;
+  // if (!roles.includes(roleId)) throw new AppError(403, `Allowed roles are ${roles}`);
 
   const userPresent = await UserModel.findOne({ where: { [Op.or]: [{ email }, { phone1 }] } });
   if (userPresent) throw new AppError(400, 'User already registered, please login');

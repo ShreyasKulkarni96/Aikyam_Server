@@ -2,6 +2,8 @@ const { DataTypes } = require('sequelize');
 const DB = require('../connection');
 const Program = require('./ProgramModel');
 const AcademicYear = require('./AcademicYearModel');
+const Student = require('./StudentModel');
+const BatchStudentRelation = require('./BatchStudentRelation');
 
 const Batch = DB.define(
   'batches',
@@ -48,7 +50,7 @@ const Batch = DB.define(
       type: DataTypes.ENUM('A', 'I'),
       allowNull: false,
       defaultValue: 'A'
-    }
+    },
   },
   {
     freezeTableName: true,
@@ -70,5 +72,8 @@ Batch.belongsTo(Program, { onDelete: 'RESTRICT', onUpdate: 'CASCADE' });
 // Associations of AcademicYear with Batch: (One to Many)
 AcademicYear.hasMany(Batch, { onDelete: 'RESTRICT', onUpdate: 'CASCADE' });
 Batch.belongsTo(AcademicYear, { onDelete: 'RESTRICT', onUpdate: 'CASCADE' });
+
+// Batch.belongsToMany(Student, { through: BatchStudentRelation, foreignKey: 'batchId', otherKey: 'studentId' });
+
 
 module.exports = Batch;

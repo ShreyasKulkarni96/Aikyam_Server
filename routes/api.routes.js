@@ -12,9 +12,13 @@ const facultyCtrl = require('../controllers/facultyController');
 const batchCtrl = require('../controllers/batchController');
 const academicYearCtrl = require('../controllers/academicYearController');
 const { uploadFile } = require('../controllers/middlewares/bulkUploads');
+const eventCtrl = require('../controllers/eventController');
+const invoiceCtrl = require('../controllers/invoicesController');
+
+
 
 //user routes
-router.post('/user/register', routeGuard, userCtrl.registerUser);
+router.post('/user/register',  userCtrl.registerUser);
 router.post('/user/login', userCtrl.loginUser);
 router.get('/user/profile', routeGuard, userCtrl.getUserProfile);
 router.get('/user/refresh-token', routeGuard, userCtrl.getRefreshToken);
@@ -25,7 +29,7 @@ router
   .get(routeGuard, campusCtrl.getCampus)
   .patch(routeGuard, campusCtrl.updateCampus)
   .delete(routeGuard, campusCtrl.deleteCampus);
-router.route('/campus').post(routeGuard, campusCtrl.addCampus).get(routeGuard, paginationFilter, campusCtrl.getAllCampuses);
+router.route('/campus').post( campusCtrl.addCampus).get(routeGuard, paginationFilter, campusCtrl.getAllCampuses);
 
 // Academic Year Routes
 router
@@ -45,6 +49,11 @@ router
   .patch(routeGuard, batchCtrl.updateBatch)
   .delete(routeGuard, batchCtrl.deleteBatch);
 router.route('/batch').post(routeGuard, batchCtrl.addBatch).get(routeGuard, paginationFilter, batchCtrl.getAllBatches);
+
+router.route('/batches/:batchId/students/:studentId').post(batchCtrl.AddStudentbatch);
+
+router.route('/batches/:batchId/students').get(batchCtrl.getBatchWithStudents);
+
 
 //Program routes
 router
@@ -86,7 +95,7 @@ router
   .delete(routeGuard, studentCtrl.deleteStudentDetails);
 router
   .route('/student-details')
-  .post(routeGuard, studentCtrl.addStudentDetails)
+  .post( studentCtrl.addStudentDetails)
   .get(routeGuard, paginationFilter, studentCtrl.getAllStudents);
 router.route('/student-addBulk').post(routeGuard, uploadFile.single('students_sheet'), studentCtrl.addBulkStudentDetails);
 // router.route('/student-addBulk').post(routeGuard, upload.single('file'), fileParser, studentCtrl.addBulkStudentDetails);
@@ -104,6 +113,27 @@ router
   .patch(routeGuard, facultyCtrl.updateFacultyExp)
   .delete(routeGuard, facultyCtrl.deleteFacultyExp);
 router.route('/faculty').post(routeGuard, facultyCtrl.addFaculty).get(routeGuard, paginationFilter, facultyCtrl.getAllFaculties);
+
+//event / schedule routes
+router
+  .route('/event/:eventId')
+  .get(eventCtrl.getEventById)
+  .patch( eventCtrl.updateEvent)
+  .delete( eventCtrl.deleteEvent);
+router.route('/event').post(eventCtrl.addEvent).get(eventCtrl.getAllEvent);
+router.route('/scheduleData/event').get(eventCtrl.getAllScheduleDetails);
+
+
+
+//iNVOICES routes
+router
+  .route('/invoices')
+  .get(invoiceCtrl.getInvoicesWithQueryParams)
+  .patch( invoiceCtrl.updateInvoices)
+  .delete( invoiceCtrl.updateInvoices);
+router.route('/invoices').post(invoiceCtrl.createInvoices).get(invoiceCtrl.getInvoicesWithQueryParams);
+
+
 
 router.get('/test-data', (req, res) => {
   res.json([
