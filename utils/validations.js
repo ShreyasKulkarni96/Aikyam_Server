@@ -107,11 +107,13 @@ const validateGuardian = data => {
 const validateStudentAccountDetails = data => {
   if (!data || _.isEmpty(data)) throw new AppError(400, 'Missing Student Account details');
 
-  let { paymentPlan, totalFees, discount, paidFees, pdcDetails } = data;
+  let { paymentPlan, totalFees, discount, paidFees,balanceAmount, pdcDetails,Totalpayable } = data;
 
   const studentAccountSchema = Joi.object({
     paymentPlan: Joi.string().trim().valid('CASH', 'CHEQUE', 'ONLINE PAYMENT').required(),
     totalFees: Joi.number().min(0).optional(),
+    Totalpayable:Joi.number().min(0).optional(),
+    balanceAmount:Joi.number().min(0).optional(),
     discount: Joi.number().min(0).max(100).optional(),
     paidFees: Joi.number().min(0).optional(),
     pdcDetails: Joi.string().trim().allow('').optional()
@@ -642,8 +644,7 @@ const validateSession = data => {
       .min(2)
       .max(100)
       .required(),
-    type: Joi.string().trim().valid('core', 'elective').required(),
-    sessionType: Joi.string().trim().valid('classroom', 'lab', 'studio', 'field visit').required(),
+    type: Joi.string().trim().valid('classroom', 'lab', 'studio', 'field visit').required(),
     timeDuration: Joi.string().min(1).max(50).required(),
     description: Joi.string()
       .trim()

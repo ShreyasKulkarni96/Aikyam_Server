@@ -21,6 +21,7 @@ const {
   validateStudentAcademicDetails,
   validateStudentAccountDetails
 } = require('../utils/validations');
+const BatchStudentRelation = require('../db/models/BatchStudentRelation');
 
 /**
  * ADD STUDENT FLOW:
@@ -34,11 +35,13 @@ const {
 
 const addStudentDetails = asyncWrapper(async (req, res, next) => {
   // if (req.userRole !== 'ADMIN') throw new AppError(400, 'You are unauthorized to add a Course');
-
+  console.log(req.body)
+ // return res.send(req.body)
   // VALIDATIONS
   if (_.isEmpty(req.body)) throw new AppError(400, 'Request body is Empty');
   const essentialKeys = ['userDetails', 'guardianDetails', 'academicDetails', 'accountDetails'];
   const reqBodyKeys = Object.keys(req.body);
+  console.log("esentials keys-->", reqBodyKeys)
   if (!essentialKeys.every(key => reqBodyKeys.includes(key))) throw new AppError(400, 'Missing required fields');
 
   req.body.userDetails.password = config.get('DEFAULT_USER_PASS');
@@ -79,6 +82,10 @@ const addStudentDetails = asyncWrapper(async (req, res, next) => {
     roleId: 2 // For Student
   };
 
+let batchId=academicDetails.batchId;
+let balanceAmount=accountDetails.balanceAmount
+
+
   const txn = await DB.transaction();
   try {
     // Insert into DB
@@ -90,13 +97,17 @@ const addStudentDetails = asyncWrapper(async (req, res, next) => {
         U_S_ID,
         guardianDetails,
         academicDetails,
-        accountDetails,
+        accountDetails, // updated account details,
+        balanceAmount:balanceAmount,
         userId: userDetails.id
       },
       { transaction: txn }
     );
 
     const studentDetails = { ...student.dataValues };
+    // console.log("Student details id-->",studentDetails.id)
+
+    await BatchStudentRelation.create({batchId:batchId,studentId:studentDetails.id},{ transaction: txn })
 
     await txn.commit();
 

@@ -92,7 +92,6 @@ const updateSession = asyncWrapper(async (req, res, next) => {
     {
       sessionName: validatedSessionDetails.sessionName,
       type: validatedSessionDetails.type,
-      sessionType: validatedSessionDetails.sessionType,
       sequence: validatedSessionDetails.sequence,
       timeDuration: validatedSessionDetails.timeDuration,
       description: validatedSessionDetails.description

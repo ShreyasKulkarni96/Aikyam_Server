@@ -6,7 +6,10 @@ const { successResp } = require('./middlewares/successHandler');
 const BatchModel = require('../db/models/BatchModel');
 const AcademicYear = require('../db/models/AcademicYearModel');
 const Program = require('../db/models/ProgramModel');
+const BatchStudentRelation = require('../db/models/BatchStudentRelation');
+const Student = require('../db/models/StudentModel');
 const { validateBatch, validateBatchDates } = require('../utils/validations');
+const UserModel = require('../db/models/UserModel');
 
 const addBatch = asyncWrapper(async (req, res, next) => {
   // if (req.userRole !== 'ADMIN') throw new AppError(400, 'You are unauthorized to add a Batch');
@@ -113,10 +116,100 @@ const deleteBatch = asyncWrapper(async (req, res, next) => {
   successResp(res, {}, 'batch deleted successfully');
 });
 
+
+// insert into the batch_student_relation
+
+// Add Student to Batch - POST
+const AddStudentbatch = asyncWrapper(async (req, res, next) => {
+  try {
+    const batchId = req.params.batchId;
+    const studentId = req.params.studentId;
+
+    const relation = await BatchStudentRelation.create({ batchId, studentId });
+    successResp(res, {}, 'batch student map successfully');
+  } catch (error) {
+    console.error(error);
+    throw new AppError(500, `Internal Server Error`);
+  }
+});
+
+// const getBatchWithStudents = async (req, res) => {
+//   try {
+//     const batchId = req.params.batchId;
+
+//     const batch = await BatchModel.findByPk(batchId, {
+//       include: [
+//         {
+//           model: Student,
+//           through: {  attributes: ['id', 'academicDetails', 'installmentDetails',] },
+
+//           include: {
+//             model: UserModel,
+//             attributes: ['id', 'name', 'email'],
+//           },
+//         },
+//       ],
+//     });
+
+//     if (!batch) {
+//       return res.status(404).json({ error: 'Batch not found' });
+//     }
+
+//     const studentsWithUsers = batch.student_details.map(student => ({
+//       studentDetails: student,
+//       userDetails: student.User,
+
+//     }));
+
+//     successResp(res, studentsWithUsers, 'Students with user details from batch fetched successfully');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
+const getBatchWithStudents = async (req, res) => {
+  try {
+    const batchId = req.params.batchId;
+
+    const batch = await BatchModel.findByPk(batchId, {
+      include: [
+        {
+          model: Student,
+          through: { attributes: [] }, // Use an empty array to exclude the join table attributes
+
+          include: {
+            model: UserModel,
+            attributes: ['id', 'name', 'email'],
+          },
+        },
+      ],
+    });
+
+    if (!batch) {
+      return res.status(404).json({ error: 'Batch not found' });
+    }
+
+    const studentsWithUsers = batch.student_details.map(student => ({
+      studentDetails: student,
+      userDetails: student.User,
+    }));
+
+    successResp(res, studentsWithUsers, 'Students with user details from batch fetched successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
+
 module.exports = {
   addBatch,
   getAllBatches,
   getBatch,
   updateBatch,
-  deleteBatch
+  deleteBatch,
+  AddStudentbatch,
+  getBatchWithStudents
 };

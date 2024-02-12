@@ -27,10 +27,10 @@ const addTopic = asyncWrapper(async (req, res, next) => {
     .map(item => (item.length > 3 ? item.charAt(0) : ''))
     .join('')
     .toUpperCase()}/${validatedTopic.topicName
-    .split(' ')
-    .map(item => (!excludeWords.includes(item) ? item.charAt(0) : ''))
-    .join('')
-    .toUpperCase()}/V1.0`;
+      .split(' ')
+      .map(item => (!excludeWords.includes(item) ? item.charAt(0) : ''))
+      .join('')
+      .toUpperCase()}/V1.0`;
 
   const newTopic = { ...validatedTopic };
   newTopic.sessionIds;
@@ -58,7 +58,7 @@ const getAllTopics = asyncWrapper(async (req, res, next) => {
         model: SessionModel,
         attributes: {
           exclude: ['details', 'createdAt', 'updatedAt'],
-          include: ['id', 'sessionName', 'sessionCode', ['type', 'sessionType'], 'isActive']
+          include: ['id', 'sessionName', 'sessionCode', 'type', 'isActive']
         },
         where: { id: sessionId }
         // required: true    // - For forcing it do an INNER JOIN

@@ -26,10 +26,6 @@ const Session = DB.define(
       type: DataTypes.STRING(30),
       allowNull: false
     },
-    sessionType: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
     description: {
       type: DataTypes.STRING(200),
       allowNull: true

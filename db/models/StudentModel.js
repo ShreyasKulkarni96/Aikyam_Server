@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const DB = require('../connection');
 const User = require('./UserModel');
+const Batch=require('./BatchModel');
+const BatchStudentRelation=require('./BatchStudentRelation');
+const Invoices=require('./InvoiceModel');
 
 const Student = DB.define(
   'student_details',
@@ -31,6 +34,11 @@ const Student = DB.define(
       allowNull: true,
       defaultValue: null
     },
+    installmentDetails: {
+      type: DataTypes.JSON,
+      allowNull: true,
+      defaultValue: null
+    },
     attendanceDetails: {
       type: DataTypes.JSON,
       allowNull: true,
@@ -43,6 +51,11 @@ const Student = DB.define(
     },
     facultyObservations: {
       type: DataTypes.JSON,
+      allowNull: true,
+      defaultValue: null
+    },
+    balanceAmount: {
+      type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: null
     },
@@ -69,5 +82,11 @@ const Student = DB.define(
 // Association of Student with User : (One To One)
 User.hasOne(Student, { onDelete: 'RESTRICT', onUpdate: 'CASCADE' });
 Student.belongsTo(User, { onDelete: 'RESTRICT', onUpdate: 'CASCADE' });
+
+Student.belongsToMany(Batch, { through: BatchStudentRelation, foreignKey: 'studentId', otherKey: 'batchId' });
+Batch.belongsToMany(Student, { through: BatchStudentRelation, foreignKey: 'batchId', otherKey: 'studentId' });
+
+Student.hasMany(Invoices, { foreignKey: 'student_id' });
+Invoices.belongsTo(Student, { foreignKey: 'student_id' });
 
 module.exports = Student;
