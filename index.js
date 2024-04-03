@@ -12,15 +12,11 @@ process.on('uncaughtException', err => {
   process.exit(1);
 });
 
-//implement logging later
-
 const server = http.createServer(app);
 
-// Database Connect and Initialize
 const initializeDb = async () => {
   try {
     await DB.sync({});
-    // await DB.sync({ alter: true });
   } catch (err) {
     console.log(err);
     logger.error('DB_CONNECT_ERR:'.bgMagenta.bold, err);

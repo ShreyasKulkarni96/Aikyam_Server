@@ -17,11 +17,12 @@ const User = DB.define(
     },
     DOB: {
       type: DataTypes.STRING(20),
-      allowNull: false
+      allowNull: true,
+      defaultValue: null
     },
     gender: {
       type: DataTypes.ENUM('M', 'F', 'O'),
-      allowNull: false
+      allowNull: true
     },
     email: {
       type: DataTypes.STRING(60),

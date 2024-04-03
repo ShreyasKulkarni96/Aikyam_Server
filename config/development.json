@@ -7,7 +7,7 @@
     "HOST": "localhost",
     "NAME": "aikyam_sms_db",
     "USER": "root",
-    "PASS": "root@123",
+    "PASS": "cdac",
     "PORT": 3306
   }
 }

@@ -10,10 +10,15 @@ const { excludeWords } = require('../utils/validations');
 const { Op } = require('sequelize');
 
 const addProgram = asyncWrapper(async (req, res, next) => {
+  const createdByUser = req.headers['userrole'];
+
+  if (createdByUser !== "SUPER_ADMIN") {
+    throw new AppError(403, 'You are unauthorized to add a campus');
+  }
+
   const validData = validateProgram(req.body);
   const { programName } = validData;
-  // INSERT INTO DB
-  // PROGRAM_CODE = ****/CR/V1.0
+
   const programCode = `${validData.programName
     .split(' ')
     .map(item => (!excludeWords.includes(item) ? item.charAt(0) : ''))
@@ -38,6 +43,12 @@ const getProgram = asyncWrapper(async (req, res, next) => {
 });
 
 const updateProgram = asyncWrapper(async (req, res, next) => {
+  const createdByUser = req.headers['userrole'];
+
+  if (createdByUser !== "SUPER_ADMIN") {
+    throw new AppError(403, 'You are unauthorized to add a campus');
+  }
+
   const validData = validateProgram(req.body);
   const programId = req.params.programId;
 
@@ -52,6 +63,13 @@ const updateProgram = asyncWrapper(async (req, res, next) => {
 });
 
 const deleteProgram = asyncWrapper(async (req, res, next) => {
+
+  const createdByUser = req.headers['userrole'];
+
+  if (createdByUser !== "SUPER_ADMIN") {
+    throw new AppError(403, 'You are unauthorized to add a campus');
+  }
+
   if (!req.params.programId) throw new AppError(400, 'Missing required `programId` param');
   const program = await ProgramModel.findByPk(req.params.programId);
   if (!program) throw new AppError(400, `Program with Id ${req.params.programId} does not exist`);
