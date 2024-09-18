@@ -10,9 +10,13 @@ const AppError = require('../utils/AppError');
 const logger = require('../utils/logger');
 const { successResp } = require('./middlewares/successHandler');
 const RoleModel = require('../db/models/RoleModel');
+const nodemailer = require('nodemailer');
+const otpGenerator = require('otp-generator');
 
 const JWT_SECRET_KEY = config.get('JWT_SECRET_KEY');
 const JWT_VALIDITY = config.get('JWT_VALIDITY');
+
+const otpStore = {};
 
 function signInToken(userId, userName, userRole) {
   const token = jwt.sign(
@@ -27,6 +31,24 @@ function signInToken(userId, userName, userRole) {
   return token;
 }
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: config.get('EMAIL_USER'),
+    pass: config.get('EMAIL_PASS')
+  }
+});
+
+const sendOtpEmail = async (email, otp) => {
+  const mailOptions = {
+    from: config.get('EMAIL_USER'),
+    to: email,
+    subject: 'Your OTP for Login',
+    text: `Your OTP for login is: ${otp}. It is valid for 10 minutes.`
+  };
+  await transporter.sendMail(mailOptions);
+};
+
 const registerUser = asyncWrapper(async (req, res, next) => {
   const roles = ['SUPER_ADMIN', 'ADMIN', 'STUDENT', 'STAFF', 'FACULTY'];
 
@@ -40,12 +62,12 @@ const registerUser = asyncWrapper(async (req, res, next) => {
     throw new AppError(403, 'You are unauthorized to register a user');
   }
 
-  if (createdByUserRole === 'ADMIN' && req.body.role === "SUPER_ADMIN") {
+  if (createdByUserRole === 'ADMIN' && req.body.role === 'SUPER_ADMIN') {
     throw new AppError(403, 'Creating a super admin is not allowed');
   }
 
   if (req.body.roleId === '1') {
-    const superAdminExists = await UserModel.count({ where: { roleId: 1 } }) > 0;
+    const superAdminExists = (await UserModel.count({ where: { roleId: 1 } })) > 0;
     if (superAdminExists) {
       throw new AppError(400, 'A super admin already exists. Cannot create another super admin.');
     }
@@ -80,9 +102,9 @@ const registerUser = asyncWrapper(async (req, res, next) => {
   }
 
   const userPresent = await UserModel.findOne({ where: { [Op.or]: [{ email }, { phone1 }] } });
-  if (userPresent) throw new AppError(400, 'User already registered, please login')
+  if (userPresent) throw new AppError(400, 'User already registered, please login');
 
-  const newPassword = "Password@123";
+  const newPassword = 'Password@123';
 
   const generateRandomUserID = () => {
     const randomNumber = Math.floor(100000 + Math.random() * 900000);
@@ -105,7 +127,7 @@ const registerUser = asyncWrapper(async (req, res, next) => {
     U_S_ID,
     isActive: 'A',
     roleId
-  }
+  };
 
   const user = await UserModel.create(insertUser);
   const details = { ...user.dataValues };
@@ -131,10 +153,92 @@ const loginUser = asyncWrapper(async (req, res, next) => {
   const passMatched = bcrypt.compareSync(password, user.password);
   if (!passMatched) throw new AppError(401, 'Either username or password is invalid');
   if (user.isActive !== 'A') throw new AppError(403, 'Temporarily account is Inactive! please contact admin');
+
+  const otp = otpGenerator.generate(6, {
+    upperCase: false,
+    specialChars: false
+  });
+
+  const otpExpiresAt = Date.now() + 10 * 60 * 1000;
+
+  await user.update({
+    otp,
+    otpExpiresAt
+  });
+
+  await sendOtpEmail(user.email, otp);
+
   const token = signInToken(user.id, user.name, user.role.name);
-  const userDetails = { userId: user.id, name: user.name, email: user.email, role: user.role.name };
-  logger.info(` ${user.name}  logged in successfully`);
+
+  successResp(res, { token, userId: user.id }, 'OTP sent', 200);
+});
+
+const verifyOtp = asyncWrapper(async (req, res, next) => {
+  const { userId, otp } = req.body;
+  if (!userId || !otp) throw new AppError(400, 'Missing required fields');
+
+  const user = await UserModel.findByPk(userId, {
+    include: [
+      {
+        model: RoleModel,
+        as: 'role',
+        attributes: ['name'] // Only fetch role name
+      }
+    ]
+  });
+
+  if (!user || !user.otp || user.otpExpiresAt < Date.now()) {
+    throw new AppError(400, 'OTP has expired or is invalid');
+  }
+
+  if (user.otp.toLowerCase() !== otp.toLowerCase()) {
+    throw new AppError(400, 'Invalid OTP');
+  }
+
+  const token = signInToken(user.id, user.name, user.role.name);
+
+  const userDetails = {
+    userId: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role.name
+  };
+  logger.info(`${user.name} logged in successfully after OTP verification`);
+  console.log(token);
   successResp(res, { ...userDetails, token }, 'Logged in successfully');
+});
+
+const resendOtp = asyncWrapper(async (req, res, next) => {
+  const { userId } = req.params;
+
+  if (!userId) throw new AppError(400, 'User ID is required');
+
+  const user = await UserModel.findByPk(userId);
+  if (!user) throw new AppError(404, 'User not found');
+
+  const otp = otpGenerator.generate(6, {
+    upperCase: false,
+    specialChars: false
+  });
+
+  const otpExpiresAt = Date.now() + 10 * 60 * 1000;
+
+  await user.update({
+    otp,
+    otpExpiresAt
+  });
+
+  await sendOtpEmail(user.email, otp);
+
+  // Respond with success message
+  successResp(
+    res,
+    {
+      message: 'OTP has been re-sent to your email. Please verify to complete login.'
+    },
+    'OTP resent',
+    200
+  );
 });
 
 const getUserProfile = asyncWrapper(async (req, res, next) => {
@@ -169,5 +273,7 @@ module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
-  getRefreshToken
-}
+  getRefreshToken,
+  verifyOtp,
+  resendOtp
+};

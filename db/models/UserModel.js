@@ -62,6 +62,12 @@ const User = DB.define(
     isActive: {
       type: DataTypes.ENUM('A', 'I'),
       allowNull: true
+    },
+    otp: {
+      type: DataTypes.STRING
+    },
+    otpExpiresAt: {
+      type: DataTypes.DATE
     }
   },
   {

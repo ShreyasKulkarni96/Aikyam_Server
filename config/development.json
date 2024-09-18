@@ -7,7 +7,9 @@
     "HOST": "localhost",
     "NAME": "aikyam_sms_db",
     "USER": "root",
-    "PASS": "cdac",
+    "PASS": "root",
     "PORT": 3306
-  }
+  },
+  "EMAIL_USER": "shreyass.kulkarnii@gmail.com",
+  "EMAIL_PASS": "dmsu hygo yjca jwun"
 }
