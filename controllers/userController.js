@@ -198,7 +198,9 @@ const loginUser = asyncWrapper(async (req, res, next) => {
 
   const otp = otpGenerator.generate(6, {
     upperCase: false,
+    lowerCase: false,
     specialChars: false,
+    digits: true,
   });
 
   const otpExpiresAt = Date.now() + 10 * 60 * 1000;
@@ -212,7 +214,7 @@ const loginUser = asyncWrapper(async (req, res, next) => {
 
   const token = signInToken(user.id, user.name, user.role.name);
 
-  successResp(res, { token, userId: user.id }, "OTP sent", 200);
+  successResp(res, { token, userId: user.id }, "OTP sent Successfully", 200);
 });
 
 const verifyOtp = asyncWrapper(async (req, res, next) => {
@@ -250,39 +252,6 @@ const verifyOtp = asyncWrapper(async (req, res, next) => {
   successResp(res, { ...userDetails, token }, "Logged in successfully");
 });
 
-const resendOtp = asyncWrapper(async (req, res, next) => {
-  const { userId } = req.params;
-
-  if (!userId) throw new AppError(400, "User ID is required");
-
-  const user = await UserModel.findByPk(userId);
-  if (!user) throw new AppError(404, "User not found");
-
-  const otp = otpGenerator.generate(6, {
-    upperCase: false,
-    specialChars: false,
-  });
-
-  const otpExpiresAt = Date.now() + 10 * 60 * 1000;
-
-  await user.update({
-    otp,
-    otpExpiresAt,
-  });
-
-  await sendOtpEmail(user.email, otp);
-
-  successResp(
-    res,
-    {
-      message:
-        "OTP has been re-sent to your email. Please verify to complete login.",
-    },
-    "OTP resent",
-    200
-  );
-});
-
 const getUserProfile = asyncWrapper(async (req, res, next) => {
   const userId = req.userId;
   const user = await UserModel.findByPk(userId);
@@ -303,70 +272,86 @@ const getUserProfile = asyncWrapper(async (req, res, next) => {
   successResp(res, userDetails, "fetched successfully");
 });
 
-const getRefreshToken = asyncWrapper(async (req, res, next) => {
-  const userId = req.userId;
-  const userName = req.userName;
-  const token = signInToken(userId, userName);
-  const userDetails = { userId: userId, name: userName, token: token };
-  logger.info("Token refreshed for user", userDetails);
-  res.status(200).json({
-    status: "success",
-    code: 200,
-    message: "token refreshed",
-    data: userDetails,
-  });
-});
+const resendOtp = asyncWrapper(async (req, res, next) => {
+  const { userId } = req.body;
 
-const logoutUser = asyncWrapper(async (req, res, next) => {
-  const userId = req.userId;
+  if (!userId) {
+    throw new AppError(400, "User ID is required");
+  }
 
   const user = await UserModel.findByPk(userId);
-  if (!user) throw new AppError(404, "User not found");
 
-  // Set tokenInvalidatedAt to the current time
-  await user.update({
-    tokenInvalidatedAt: new Date(),
+  if (!user) {
+    throw new AppError(404, "User not found");
+  }
+
+  const otp = otpGenerator.generate(6, {
+    upperCase: false,
+    lowerCase: false,
+    specialChars: false,
+    digits: true,
   });
 
-  successResp(res, null, "User logged out successfully", 200);
+  const otpExpiresAt = Date.now() + 10 * 60 * 1000;
+
+  await user.update({
+    otp,
+    otpExpiresAt,
+  });
+
+  await sendOtpEmail(user.email, otp);
+
+  successResp(res, {}, "OTP has been resent successfully", 200);
 });
 
-const verifyToken = asyncWrapper(async (req, res, next) => {
-  const token = req.headers.authorization.split(" ")[1]; // Assuming the token is in the Authorization header
-  if (!token) throw new AppError(401, "Authentication token is missing");
+// const getRefreshToken = asyncWrapper(async (req, res, next) => {
+//   const userId = req.userId;
+//   const userName = req.userName;
+//   const token = signInToken(userId, userName);
+//   const userDetails = { userId: userId, name: userName, token: token };
+//   logger.info("Token refreshed for user", userDetails);
+//   res.status(200).json({
+//     status: "success",
+//     code: 200,
+//     message: "token refreshed",
+//     data: userDetails,
+//   });
+// });
 
-  // Verify the token
-  let decodedToken;
-  try {
-    decodedToken = jwt.verify(token, JWT_SECRET_KEY);
-  } catch (err) {
-    throw new AppError(401, "Invalid or expired token");
-  }
 
-  // Fetch the user and check tokenInvalidatedAt
-  const user = await UserModel.findByPk(decodedToken.userId);
-  if (!user) throw new AppError(401, "User not found");
+// const verifyToken = asyncWrapper(async (req, res, next) => {
+//   const token = req.headers.authorization.split(" ")[1]; // Assuming the token is in the Authorization header
+//   if (!token) throw new AppError(401, "Authentication token is missing");
 
-  // If the token was issued before tokenInvalidatedAt, it's invalid
-  if (
-    user.tokenInvalidatedAt &&
-    decodedToken.iat * 1000 < user.tokenInvalidatedAt.getTime()
-  ) {
-    throw new AppError(401, "Token has been invalidated. Please login again.");
-  }
+//   // Verify the token
+//   let decodedToken;
+//   try {
+//     decodedToken = jwt.verify(token, JWT_SECRET_KEY);
+//   } catch (err) {
+//     throw new AppError(401, "Invalid or expired token");
+//   }
 
-  req.userId = user.id;
-  req.userRole = decodedToken.role;
-  next();
-});
+//   // Fetch the user and check tokenInvalidatedAt
+//   const user = await UserModel.findByPk(decodedToken.userId);
+//   if (!user) throw new AppError(401, "User not found");
+
+//   // If the token was issued before tokenInvalidatedAt, it's invalid
+//   if (
+//     user.tokenInvalidatedAt &&
+//     decodedToken.iat * 1000 < user.tokenInvalidatedAt.getTime()
+//   ) {
+//     throw new AppError(401, "Token has been invalidated. Please login again.");
+//   }
+
+//   req.userId = user.id;
+//   req.userRole = decodedToken.role;
+//   next();
+// });
 
 module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
-  getRefreshToken,
   verifyOtp,
-  resendOtp,
-  verifyToken,
-  logoutUser,
+  resendOtp
 };
