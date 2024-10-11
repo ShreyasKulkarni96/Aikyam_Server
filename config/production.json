@@ -5,9 +5,9 @@
     "DEFAULT_USER_PASS": "DEFAULT@123s",
     "DB": {
         "HOST": "localhost",
-        "NAME": "aikyam_sms_db",
+        "NAME": "aikyam-db",
         "USER": "root",
-        "PASS": "cdac",
+        "PASS": "sachinroot",
         "PORT": 3306
     },
     "EMAIL_USER": "Aik.Prod.01@gmail.com",
