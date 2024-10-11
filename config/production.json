@@ -4,8 +4,8 @@
     "JWT_VALIDITY": "30d",
     "DEFAULT_USER_PASS": "DEFAULT@123s",
     "DB": {
-        "HOST": "localhost",
-        "NAME": "aikyam-db",
+        "HOST": "aikyam-db.c7s866imag20.ap-south-1.rds.amazonaws.com",
+        "NAME": "aikyam_db",
         "USER": "root",
         "PASS": "sachinroot",
         "PORT": 3306
