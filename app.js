@@ -12,12 +12,18 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: 'http://3.109.203.253:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.options("*", cors());
 
 app.use(express.static(join(__dirname, "./public")));
 
 app.use("/api", apiRouter);
+
+
 
 app.get("/", (req, res, next) => res.send("WELCOME TO SSMS SERVER"));
 
