@@ -53,24 +53,23 @@ const registerUser = asyncWrapper(async (req, res, next) => {
   const createdByUserRole = req.headers["userrole"];
 
   if (!createdByUserRole || !roles.includes(createdByUserRole)) {
-    throw new AppError(403, `Invalid or missing user role in headers`);
+    throw new AppError(403, "Invalid or missing user role in headers");
   }
 
   if (createdByUserRole !== "ADMIN" && createdByUserRole !== "SUPER_ADMIN") {
-    throw new AppError(403, "You are unauthorized to register a user");
+    throw new AppError(403, "You are unauthorized to register a user")
   }
 
-  if (createdByUserRole === "ADMIN" && req.body.roleId === 1) {
+  if (createdByUserRole === "ADMIN" && req.body.userRole === "SUPER_ADMIN") {
     throw new AppError(403, "Creating a super admin is not allowed");
   }
 
-  if (req.body.roleId === 1) {
-    const superAdminExists =
-      (await UserModel.count({ where: { roleId: 1 } })) > 0;
+  if (req.body.userRole === "SUPER_ADMIN") {
+    const superAdminExists = (await UserModel.count({ where: { userRole: "SUPER_ADMIN" } })) > 0;
     if (superAdminExists) {
       throw new AppError(
         400,
-        "A super admin already exists. Cannot create another super admin."
+        "A Super Admin already exists. Cannot create another super admin."
       );
     }
   }
@@ -87,53 +86,63 @@ const registerUser = asyncWrapper(async (req, res, next) => {
     phone2 = null,
     localAddress,
     permanentAddress,
-    roleId,
+    userRole
   } = req.body;
 
   if (!req.body || _.isEmpty(req.body))
     throw new AppError(400, "Missing request body");
-  //   if (Object.values(req.body).find((el) => typeof el !== "string"))
-  //     throw new AppError(400, "All fields must be string");
+
+  if (Object.values(req.body).find((el) => typeof el !== "string"))
+    throw new AppError(400, "All fields must be string");
+
   if (!name || !DOB || !email || !phone1)
     throw new AppError(400, "Missing required fields");
+
   if (!NAME_REGEX.test(name))
     throw new AppError(
       400,
-      "Name can only be alphabetic with blank space and ."
-    );
+      "Name can only be alphabetic with blank space and .")
+
   const YOB = new Date(DOB).getFullYear();
   const mobile1 = phone1.split("-")[1];
   name = name.trim().replace(/\s\s+/g, " ");
-  if (!validator.isDate(DOB, "DD-MM-YYYY"))
+
+  if (!validator.isDate(DOB, "YYYY-MM-DD"))
     throw new AppError(400, "Invalid Date of birth passed");
+
   if (currentYear - YOB < 5 || currentYear - YOB > 80)
     throw new AppError(400, "Allowed age is 5 to 80 years");
+
   if (!["M", "F", "O"].includes(gender))
     throw new AppError(400, "Invalid Gender passed");
-  if (!validator.isEmail(email)) throw new AppError(400, "Invalid Email");
+
+  if (!validator.isEmail(email))
+    throw new AppError(400, "Invalid Email");
+
   if (!validator.isMobilePhone(mobile1, ["en-IN"]))
     throw new AppError(400, "Invalid Phone number");
+
   if (localAddress.length > 500)
-    throw new AppError(400, "Local address can be max 500 characters");
+    throw new AppError(400, "Local address can be max 500 character");
+
   if (permanentAddress.length > 500)
     throw new AppError(400, "Permanent address can be max 500 characters");
 
-  permanentAddress =
-    permanentAddress && permanentAddress !== "SAME"
-      ? permanentAddress
-      : localAddress;
+  permanentAddress = permanentAddress && permanentAddress !== "SAME" ? permanentAddress : localAddress;
+
   phone1 = phone1.trim();
 
   if (phone2) {
     const mobile2 = phone2.split("-")[1];
     if (!validator.isMobilePhone(mobile2, ["en-IN"]))
-      throw new AppError(400, "Invalid Phone number 2");
-    phone2 = phone2.trim();
+      throw new AppError(400, "Invalid phone number 2");
+    phone2 = phone2.trim()
   }
 
   const userPresent = await UserModel.findOne({
     where: { [Op.or]: [{ email }, { phone1 }] },
-  });
+  })
+
   if (userPresent)
     throw new AppError(400, "User already registered, please login");
 
@@ -159,15 +168,15 @@ const registerUser = asyncWrapper(async (req, res, next) => {
     permanentAddress,
     U_S_ID,
     isActive: "A",
-    roleId,
-  };
+    userRole
+  }
 
   const user = await UserModel.create(insertUser);
   const details = { ...user.dataValues };
 
   logger.info(`New User Registered successfully`, details);
   return successResp(res, details, "Registered successfully", 201);
-});
+})
 
 const loginUser = asyncWrapper(async (req, res, next) => {
   const { emailOrPhone, password } = req.body;

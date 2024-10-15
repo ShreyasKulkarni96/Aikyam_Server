@@ -48,6 +48,7 @@ const seedDatabase = async () => {
         phone1: "+91-9168186699",
         password: "Password@123",
         roleId: 1,
+        userRole: "SUPER_ADMIN",
         isActive: "A",
         U_S_ID: "UID-000001",
         localAddress: "Admin Address",

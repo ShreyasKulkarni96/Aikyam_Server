@@ -56,8 +56,11 @@ const User = DB.define(
     },
     roleId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 2,
+      allowNull: true,
+    },
+    userRole: {
+      type: DataTypes.STRING(20),
+      allowNull: false
     },
     isActive: {
       type: DataTypes.ENUM("A", "I"),
