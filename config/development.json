@@ -4,7 +4,7 @@
   "JWT_VALIDITY": "30d",
   "DEFAULT_USER_PASS": "DEFAULT@123s",
   "DB": {
-    "HOST": "aikyam-db.c7s866imag20.ap-south-1.rds.amazonaws.com",
+    "HOST": "aikyam-sms-db.c7s866imag20.ap-south-1.rds.amazonaws.com",
     "NAME": "aikyam_db",
     "USER": "root",
     "PASS": "sachinroot",
