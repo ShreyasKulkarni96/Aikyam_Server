@@ -12,6 +12,7 @@ const { successResp } = require("./middleware/successHandler");
 const RoleModel = require("../db/models/RoleModel");
 const nodemailer = require("nodemailer");
 const otpGenerator = require("otp-generator");
+//const userIdGenerator = require('../utils/generateRandomUserID');
 
 const JWT_SECRET_KEY = config.get("JWT_SECRET_KEY");
 const JWT_VALIDITY = config.get("JWT_VALIDITY");
@@ -220,8 +221,8 @@ const loginUser = asyncWrapper(async (req, res, next) => {
   });
 
   await sendOtpEmail(user.email, otp);
-
-  const token = signInToken(user.id, user.name, user.role.name);
+  logger.info(user)
+  const token = signInToken(user.id, user.name, user.userRole);
 
   successResp(res, { token, userId: user.id }, "OTP sent Successfully", 200);
 });
@@ -248,13 +249,13 @@ const verifyOtp = asyncWrapper(async (req, res, next) => {
     throw new AppError(400, "Invalid OTP");
   }
 
-  const token = signInToken(user.id, user.name, user.role.name);
+  const token = signInToken(user.id, user.name, user.userRole);
 
   const userDetails = {
     userId: user.id,
     name: user.name,
     email: user.email,
-    role: user.role.name,
+    role: user.userRole,
   };
   logger.info(`${user.name} logged in successfully after OTP verification`);
 

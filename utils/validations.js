@@ -710,7 +710,8 @@ const validateCampus = data => {
       .max(100)
       .required(),
     contactPersonEmail: Joi.string().trim().min(4).max(50).email().required(),
-    city: Joi.string().trim().replace(/\s\s+/g, ' ').min(2).max(50).required()
+    city: Joi.string().trim().replace(/\s\s+/g, ' ').min(2).max(50).required(),
+    state: Joi.string().trim().replace(/\s\s+/g, ' ').min(2).max(50).required()
   });
 
   const { error: validationErr } = campusSchema.validate(data);
