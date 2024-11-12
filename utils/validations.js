@@ -107,12 +107,12 @@ const validateGuardian = data => {
 const validateStudentAccountDetails = data => {
   if (!data || _.isEmpty(data)) throw new AppError(400, 'Missing Student Account details');
 
-  let { paymentPlan, totalFees, discount, paidFees, balanceAmount, pdcDetails, Totalpayable } = data;
+  let { paymentPlan, totalFees, discount, paidFees, balanceAmount, pdcDetails, totalpayable } = data;
 
   const studentAccountSchema = Joi.object({
     paymentPlan: Joi.string().trim().valid('CASH', 'CHEQUE', 'ONLINE PAYMENT').required(),
     totalFees: Joi.number().min(0).optional(),
-    Totalpayable: Joi.number().min(0).optional(),
+    totalpayable: Joi.number().min(0).optional(),
     balanceAmount: Joi.number().min(0).optional(),
     discount: Joi.number().min(0).max(100).optional(),
     paidFees: Joi.number().min(0).optional(),

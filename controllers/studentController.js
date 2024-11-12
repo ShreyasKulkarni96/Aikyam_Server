@@ -69,7 +69,8 @@ const addStudentDetails = asyncWrapper(async (req, res, next) => {
         permanentAddress,
         U_S_ID,
         isActive: 'A',
-        roleId: 2 // For Student
+        roleId: 2,
+        userRole: 'Student' // For Student
     };
 
     let batchId = academicDetails.batchId;
