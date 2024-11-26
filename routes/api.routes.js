@@ -14,6 +14,7 @@ const { uploadFile } = require('../controllers/middleware/bulkUploads');
 const eventCtrl = require('../controllers/eventController');
 const invoiceCtrl = require('../controllers/invoiceController.js');
 const leaveController = require('../controllers/leaveController.js');
+const reportsController = require('../controllers/reportsController.js')
 
 // USER
 router.post("/user/register", userCtrl.registerUser);
@@ -145,6 +146,9 @@ router.post('/leave/:userId', leaveController.postLeaveRequest);
 router.get('/leave/approval', leaveController.getLeaveRequestsForApproval);
 router.get('/leave/:userId', leaveController.getCurrentMonthsLeaveRequests);
 router.put('/leave/:id', leaveController.approveRejectLeaveRequest);
+router.get('/leave', leaveController.getAllLeaveRequests);
+
+router.get('/reports/:reportType', reportsController.getReports);
 
 
 module.exports = router;

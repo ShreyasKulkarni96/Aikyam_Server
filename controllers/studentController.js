@@ -69,7 +69,7 @@ const addStudentDetails = asyncWrapper(async (req, res, next) => {
         permanentAddress,
         U_S_ID,
         isActive: 'A',
-        roleId: 2,
+        roleId: 5,
         userRole: 'Student' // For Student
     };
 
