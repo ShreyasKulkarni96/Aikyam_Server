@@ -4,10 +4,10 @@
   "JWT_VALIDITY": "30d",
   "DEFAULT_USER_PASS": "DEFAULT@123s",
   "DB": {
-    "HOST": "aikyamdb.c7s866imag20.ap-south-1.rds.amazonaws.com",
-    "NAME": "aikyam_db",
+    "HOST": "database-1.c7s866imag20.ap-south-1.rds.amazonaws.com",
+    "NAME": "database_1",
     "USER": "root",
-    "PASS": "sachinroot",
+    "PASS": "cdac",
     "PORT": 3306
   },
   "EMAIL_USER": "Aik.Prod.01@gmail.com",
